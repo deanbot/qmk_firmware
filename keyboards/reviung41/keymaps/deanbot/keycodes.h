@@ -1,0 +1,62 @@
+#pragma once
+
+#include "common.h"
+
+// Media tokens
+#define M_PREV KC_MEDIA_PREV_TRACK
+#define M_NEXT KC_MEDIA_NEXT_TRACK
+#define VOL_UP KC_AUDIO_VOL_UP
+#define VOL_DOWN KC_AUDIO_VOL_DOWN
+#define M_MUTE KC_AUDIO_MUTE
+#define M_STOP KC_MEDIA_STOP
+#define M_PAUSE KC_MEDIA_PLAY_PAUSE
+#define BR_UP KC_BRIGHTNESS_UP
+#define BR_DOWN KC_BRIGHTNESS_DOWN
+
+// Nav tokens
+#define STAB LSFT(KC_TAB)
+#define BS LCTL(KC_BSPACE)
+#define CBS LCTL(KC_BSPACE)
+#define CDEL LCTL(KC_DELETE)
+#define CAPS KC_CAPSLOCK
+#define CHOME LCTL(KC_HOME)
+#define CEND LCTL(KC_END)
+#define ALT_F4 LALT(KC_F4)
+#define APP KC_APPLICATION
+#define DEL_LINE LCTL(LSFT(KC_K))
+#define OGUI OSM(MOD_LGUI)
+#define OALT OSM(MOD_LALT)
+#define OSC OSM(MOD_LCTL)
+#define OSS OSM(MOD_LSFT)
+#define CKP_0 LCTL(KC_KP_0)
+#define CKP_MIN LCTL(KC_KP_MINUS)
+#define CKP_PLS LCTL(KC_KP_PLUS)
+#define PS KC_PSCREEN
+
+// Mouse keycodes
+#define INCOG LCTL(LSFT(KC_N))
+#define RETAB LCTL(LSFT(KC_T))
+#define DUPT LCTL(LSFT(KC_K))
+#define PREVT LCTL(KC_PGUP)
+#define NEXTT LCTL(KC_PGDOWN)
+#define HRLOAD LCTL(LSFT(KC_R))
+#define MLEFT KC_MS_LEFT
+#define MDOWN KC_MSDOWN
+#define MUP KC_MS_UP
+#define MRIGHT KC_MS_RIGHT
+#define MW_UP KC_MS_WH_UP
+#define MW_DOWN KC_MS_WH_DOWN
+#define MW_LEFT KC_MS_WH_LEFT
+#define MW_RIGHT KC_MS_WH_RIGHT
+#define TOP LCTL(KC_HOME)
+#define BOTTOM LCTL(KC_END)
+#define MBTN3 KC_MS_BTN3
+#define MBTN2 KC_MS_BTN2
+#define MBTN1 KC_MS_BTN1
+#define BKMKS LCTL(LSFT(KC_B))
+#define BACK LALT(KC_LEFT)
+#define FWD LALT(KC_RIGHT)
+#define DEVT LCTL(LSFT(KC_I))
+
+// misc tokens
+#define TRANS KC_TRANSPARENT

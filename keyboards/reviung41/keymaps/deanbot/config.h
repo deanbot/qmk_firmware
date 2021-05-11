@@ -1,3 +1,5 @@
+#pragma once
+
 #define MOUSEKEY_DELAY 0
 #define MOUSEKEY_INTERVAL 16
 #define MOUSEKEY_MOVE_DELTA 5
