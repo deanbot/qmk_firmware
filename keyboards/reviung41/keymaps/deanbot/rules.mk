@@ -1,3 +1,4 @@
+BOOTLOADER = atmel-dfu
 TAP_DANCE_ENABLE = yes
 MOUSEKEY_ENABLE = yes
 RGBLIGHT_ENABLE = yes
@@ -5,4 +6,5 @@ COMBO_ENABLE = yes
 CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
 
+# reduce filesize
 EXTRAFLAGS += -flto

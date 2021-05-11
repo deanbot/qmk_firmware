@@ -41,7 +41,7 @@
 #define NEXTT LCTL(KC_PGDOWN)
 #define HRLOAD LCTL(LSFT(KC_R))
 #define MLEFT KC_MS_LEFT
-#define MDOWN KC_MSDOWN
+#define MDOWN KC_MS_DOWN
 #define MUP KC_MS_UP
 #define MRIGHT KC_MS_RIGHT
 #define MW_UP KC_MS_WH_UP
@@ -57,6 +57,10 @@
 #define BACK LALT(KC_LEFT)
 #define FWD LALT(KC_RIGHT)
 #define DEVT LCTL(LSFT(KC_I))
+
+// sym tokens
+#define LBRACK KC_LBRACKET
+#define RBRACK KC_RBRACKET
 
 // misc tokens
 #define TRANS KC_TRANSPARENT

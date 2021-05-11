@@ -39,7 +39,7 @@
 // Mouse layer
 #define _________________MOUSE_L1___________________        INCOG,    PREVT,    MBTN1,    NEXTT,    HRLOAD
 #define _________________MOUSE_L2___________________        KC_LSHIFT,KC_LALT,  MW_UP,    KC_LCTRL, DUPT
-#define _________________MOUSE_L3___________________        RETAAB,   TOP,      MW_DOWN,  BOTTOM,   BACK
+#define _________________MOUSE_L3___________________        RETAB,   TOP,      MW_DOWN,  BOTTOM,   BACK
 
 #define _________________MOUSE_R1___________________        LCTL(KC_W),MBTN3,   MW_UP,    MBTN2,    BKMKS
 #define _________________MOUSE_R2___________________        LCTL(KC_T),MLEFT,   MDOWN,    MUP,      MRIGHT
@@ -51,8 +51,8 @@
 
 // Sym layer
 #define __________________SYM_L1____________________        KC_CIRC,  KC_SCOLON,KC_LABK,  KC_RABK,  KC_AMPR
-#define __________________SYM_L2____________________        KC_ASTR,  KC_RCBR,  KC_DLR, KC_RBRACKET,KC_RPRN
-#define __________________SYM_L3____________________        KC_LCBR,  KC_COLN,KC_LBRACKET,KC_LPRN,  KC_AT
+#define __________________SYM_L2____________________        KC_LCBR,  LBRACK,   KC_LPRN,  KC_COLN,  KC_AT
+#define __________________SYM_L3____________________        KC_ASTR,  KC_RCBR,  RBRACK,   KC_RPRN,  KC_DLR
 
 #define __________________SYM_R1____________________        KC_PIPE,  KC_EQUAL, KC_PLUS,  KC_QUOTE, KC_GRAVE
 #define __________________SYM_R2____________________        KC_HASH,  KC_MINUS, KC_SLASH, KC_DQUO,  KC_PERC

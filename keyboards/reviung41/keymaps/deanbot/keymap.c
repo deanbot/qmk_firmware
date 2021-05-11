@@ -14,136 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-
-// utilities
-#define S_T(...)  LSFT_T(__VA_ARGS__)
-#define C_T(...)  CTL_T(__VA_ARGS__)
-
-void tap_key(uint16_t keycode)
-{
-  register_code  (keycode);
-  unregister_code(keycode);
-}
-
-// Media tokens
-#define M_PREV KC_MEDIA_PREV_TRACK
-#define M_NEXT KC_MEDIA_NEXT_TRACK
-#define VOL_UP KC_AUDIO_VOL_UP
-#define VOL_DOWN KC_AUDIO_VOL_DOWN
-#define M_MUTE KC_AUDIO_MUTE
-#define M_STOP KC_MEDIA_STOP
-#define M_PAUSE KC_MEDIA_PLAY_PAUSE
-#define BR_UP KC_BRIGHTNESS_UP
-#define BR_DOWN KC_BRIGHTNESS_DOWN
-
-// Nav tokens
-#define STAB LSFT(KC_TAB)
-#define BS LCTL(KC_BSPACE)
-#define CBS LCTL(KC_BSPACE)
-#define CDEL LCTL(KC_DELETE)
-#define CAPS KC_CAPSLOCK
-#define CHOME LCTL(KC_HOME)
-#define CEND LCTL(KC_END)
-#define ALT_F4 LALT(KC_F4)
-#define APP KC_APPLICATION
-#define DEL_LINE LCTL(LSFT(KC_K))
-#define OGUI OSM(MOD_LGUI)
-#define OALT OSM(MOD_LALT)
-#define OSC OSM(MOD_LCTL)
-#define OSS OSM(MOD_LSFT)
-#define CKP_0 LCTL(KC_KP_0)
-#define CKP_MIN LCTL(KC_KP_MINUS)
-#define CKP_PLS LCTL(KC_KP_PLUS)
-#define PS KC_PSCREEN
-
-// Mouse keycodes
-#define INCOG LCTL(LSFT(KC_N))
-#define RETAB LCTL(LSFT(KC_T))
-#define DUPT LCTL(LSFT(KC_K))
-#define PREVT LCTL(KC_PGUP)
-#define NEXTT LCTL(KC_PGDOWN)
-#define HRLOAD LCTL(LSFT(KC_R))
-#define MLEFT KC_MS_LEFT
-#define MDOWN KC_MSDOWN
-#define MUP KC_MS_UP
-#define MRIGHT KC_MS_RIGHT
-#define MW_UP KC_MS_WH_UP
-#define MW_DOWN KC_MS_WH_DOWN
-#define MW_LEFT KC_MS_WH_LEFT
-#define MW_RIGHT KC_MS_WH_RIGHT
-#define TOP LCTL(KC_HOME)
-#define BOTTOM LCTL(KC_END)
-#define MBTN3 KC_MS_BTN3
-#define MBTN2 KC_MS_BTN2
-#define MBTN1 KC_MS_BTN1
-#define BKMKS LCTL(LSFT(KC_B))
-#define BACK LALT(KC_LEFT)
-#define FWD LALT(KC_RIGHT)
-#define DEVT LCTL(LSFT(KC_I))
-
-// misc tokens
-#define TRANS KC_TRANSPARENT
-
-
-// Shared
-#define __________________BLANK_5___________________        TRANS,    TRANS,    TRANS,    TRANS,    TRANS
-#define ____________________NO_5____________________        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO
-#define ______________MODS_L______________                  KC_LSHIFT,KC_LCTRL, KC_LALT,  KC_LGUI
-#define ______________MODS_R______________                  KC_LGUI,  KC_LALT,  KC_LCTRL, KC_LSHIFT
-
-// Base layer
-#define _________________COLEMAK_L1_________________        KC_Q,     KC_W,     KC_F,     KC_P,     KC_B
-#define _________________COLEMAK_L2_________________        KC_A,     KC_R,     KC_S,     C_T(KC_T),KC_G
-#define _________________COLEMAK_L3_________________        S_T(KC_Z),KC_X,     KC_C,     KC_D,     KC_V
-
-#define _________________COLEMAK_R1_________________        KC_J,     KC_L,     KC_U,     KC_Y,     KC_QUOT
-#define _________________COLEMAK_R2_________________        KC_M, C_T(KC_N),    KC_E,     KC_I,     KC_O
-#define _________________COLEMAK_R3_________________        KC_K,     KC_H,     KC_COMM,  KC_DOT,   S_T(KC_SLSH)
-
-// Fn layer
-#define ___________________FN_L1____________________        M_PREV,   M_NEXT,   VOL_UP,   VOL_DOWN, M_MUTE
-#define ___________________FN_L2____________________        ______________MODS_L______________,     M_STOP
-#define ___________________FN_L3____________________        TRANS,    TRANS,    BR_UP,    BR_DOWN,  M_PAUSE
-
-#define ______________FN_R1_______________                  KC_F7,    KC_F8,    KC_F9,    KC_F10
-#define ______________FN_R2_______________                  KC_F4,    KC_F5,    KC_F6,    KC_F11
-#define ______________FN_R3_______________                  KC_F1,    KC_F2,    KC_F3,    KC_F12
-
-// Nav layer
-#define __________________NAV_L1____________________        KC_INSERT,KC_PGUP,  CHOME,    KC_PGDOWN,KC_ESCAPE
-#define __________________NAV_L2____________________        KC_LEFT,  KC_UP,    KC_DOWN,  KC_RIGHT, KC_DELETE
-#define __________________NAV_L3____________________        CAPS,     KC_HOME,  CEND,     KC_END,   CDEL
-
-#define __________________NAV_R1____________________        ALT_F4,   CKP_0,    CKP_MIN,  CKP_PLS,  PS
-#define __________________NAV_R2____________________        APP,      ______________MODS_R______________
-#define __________________NAV_R3____________________        DEL_LINE, OGUI,     OALT,     OSC,      OSS
-
-// Mouse layer
-#define _________________MOUSE_L1___________________        INCOG,    PREVT,    MBTN1,    NEXTT,    HRLOAD
-#define _________________MOUSE_L2___________________        KC_LSHIFT,KC_LALT,  MW_UP,    KC_LCTRL, DUPT
-#define _________________MOUSE_L3___________________        RETAAB,   TOP,      MW_DOWN,  BOTTOM,   BACK
-
-#define _________________MOUSE_R1___________________        LCTL(KC_W),MBTN3,   MW_UP,    MBTN2,    BKMKS
-#define _________________MOUSE_R2___________________        LCTL(KC_T),MLEFT,   MDOWN,    MUP,      MRIGHT
-#define _________________MOUSE_R3___________________        FWD,      MW_LEFT,  MW_DOWN,  MW_RIGHT, DEVT
-
-// Num layer
-#define ___________________NUM_L____________________        KC_7,     KC_5,     KC_3,     C_T(KC_1),KC_9
-#define ___________________NUM_R____________________        KC_8,     C_T(KC_0),KC_2,     KC_4,     KC_6
-
-// Sym layer
-#define __________________SYM_L1____________________        KC_CIRC,  KC_SCOLON,KC_LABK,  KC_RABK,  KC_AMPR
-#define __________________SYM_L2____________________        KC_ASTR,  KC_RCBR,  KC_DLR, KC_RBRACKET,KC_RPRN
-#define __________________SYM_L3____________________        KC_LCBR,  KC_COLN,KC_LBRACKET,KC_LPRN,  KC_AT
-
-#define __________________SYM_R1____________________        KC_PIPE,  KC_EQUAL, KC_PLUS,  KC_QUOTE, KC_GRAVE
-#define __________________SYM_R2____________________        KC_HASH,  KC_MINUS, KC_SLASH, KC_DQUO,  KC_PERC
-#define __________________SYM_R3____________________        KC_TILD,  KC_UNDS,  KC_BSLASH,KC_EXLM,  KC_QUES
-
-// Meta layer
-#define _________________META_L1____________________        RGB_VAI,  RGB_SAI,  RGB_HUI,  RGB_MOD,   RGB_TOG
-#define _________________META_L2____________________        RGB_VAD,  RGB_SAD,  RGB_HUD,  RGB_RMOD,  KC_NO
-
+#include "common.h"
+#include "keycodes.h"
+#include "layers.h"
 
 enum layer_names {
   _BASE,
@@ -189,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_NAV] = LAYOUT_rev(
-    STAB,   __________________NAV_L1____________________                    __________________NAV_R1____________________,   TO(_BASE),
+    STAB,   __________________NAV_L1____________________,                   __________________NAV_R1____________________,   TO(_BASE),
     BS,     __________________NAV_L2____________________,                   __________________NAV_R2____________________,   TRANS,
     CBS,    __________________NAV_L3____________________,                   __________________NAV_R2____________________,   TRANS,
                                     MO(_META),  KC_ENTER,       KC_TAB,         TRANS,      TRANS
@@ -211,15 +84,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_SYM] = LAYOUT_rev(
     TRANS,  __________________SYM_L1____________________,                   __________________SYM_R1____________________,   TRANS,
-    TRANS,  __________________SYM_L2____________________,                   __________________SYM_R1____________________,   TRANS,
+    TRANS,  __________________SYM_L2____________________,                   __________________SYM_R2____________________,   TRANS,
     TRANS,  __________________SYM_L3____________________,                   __________________SYM_R3____________________,   TRANS,
                                             __________________BLANK_5___________________
   ),
 
   [_META] = LAYOUT_rev(
-    KC_NO,  _________________META_L1____________________,                   ____________________NO_5____________________,  RESET,
-    KC_NO,  _________________META_L2____________________,                   ____________________NO_5____________________,  TRANS,
-    KC_NO,  ____________________NO_5____________________,                   ____________________NO_5____________________,  TRANS,
+    KC_NO,  _________________META_L1____________________,                   ____________________NO_5____________________,   RESET,
+    KC_NO,  _________________META_L2____________________,                   ____________________NO_5____________________,   TRANS,
+    KC_NO,  ____________________NO_5____________________,                   ____________________NO_5____________________,   TRANS,
                                             __________________BLANK_5___________________
   ),
 };
