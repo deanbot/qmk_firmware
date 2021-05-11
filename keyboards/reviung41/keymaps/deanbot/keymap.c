@@ -36,9 +36,11 @@ enum tap_dance_codes {
 
 // Keycodes
 #define NAV OSL(_NAV)
+#define TO_MOUSE TO(_MOUSE)
 #define MB2_FN TD(TD_MB2_FN)
 #define MB1_NUM TD(TD_MB1_NUM)
 #define OSS_SYM LT(_SYM, KC_F22)
+#define OSMEH_ALT ALT_T(KC_F23)
 #define SP_MO LT(_MOUSE, KC_SPACE)
 #define BSP_NAV LT(_NAV, KC_BSPACE)
 
@@ -51,12 +53,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB, _________________COLEMAK_L1_________________,                   _________________COLEMAK_R1_________________,   OSM(MOD_RALT),
     NAV,    _________________COLEMAK_L2_________________,                   _________________COLEMAK_R2_________________,   NAV,
     MB2_FN, _________________COLEMAK_L3_________________,                   _________________COLEMAK_R3_________________,   OSM(MOD_LALT),
-                                    MB1_NUM,    SP_MO,        OSS_SYM,          BSP_NAV,    OSC
+                                    MB1_NUM,    SP_MO,        OSS_SYM,          BSP_NAV,    OSMEH_ALT
   ),
 
   [_FN] = LAYOUT_rev(
     TRANS,  ___________________FN_L1____________________,                   TO(_NAV), ______________FN_R1_______________,   TRANS,
-    TRANS,  ___________________FN_L2____________________,                  TO(_MOUSE),______________FN_R2_______________,   TRANS,
+    TRANS,  ___________________FN_L2____________________,                   TO_MOUSE, ______________FN_R2_______________,   TRANS,
     TRANS,  ___________________FN_L3____________________,                   TO(_BASE),______________FN_R2_______________,   TRANS,
                                             __________________BLANK_5___________________
   ),
@@ -97,21 +99,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
+// hijack an unused keycode to do mod- and layer-taps with cooler taps than just basic keycodes
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-        // hijack an unused keycode to do mod- and layer-taps with cooler taps than just basic keycodes
-        case LT(_SYM, KC_F22):
-            if (record->tap.count == 2 && !record->event.pressed) {
-                tap_key(CAPS);
-            } else if (record->tap.count > 0) {
-                if (record->event.pressed) {
-                    set_oneshot_mods(MOD_LSFT);
-                }
-                return false;
-            }
-            break;
-    }
-    return true;
+    // tap: oss, double-tap: caps, hold: LT
+    case OSS_SYM:
+      if (record->tap.count == 2 && !record->event.pressed) {
+        tap_key(CAPS);
+      } else if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          set_oneshot_mods(MOD_LSFT);
+        }
+        return false;
+      }
+      break;
+
+    // tap: osmeh, hold: alt
+    case OSMEH_ALT:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          set_oneshot_mods(MOD_MEH);
+        }
+        return false;
+      }
+      break;
+  }
+  return true;
 }
 
 typedef struct {
