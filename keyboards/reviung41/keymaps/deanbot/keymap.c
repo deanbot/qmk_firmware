@@ -8,8 +8,8 @@ enum layer_names {
   _FN,
   _NAV,
   _MOUSE,
-  _NUM,
   _SYM,
+  _NUM,
   _META
 };
 
@@ -30,6 +30,7 @@ enum tap_dance_codes {
 #define SP_SYM LT(_SYM, KC_SPACE)
 #define BS_NAV LT(_NAV, KC_BSPACE)
 #define BS_NUM LT(_NUM, KC_BSPACE)
+
 // layer tokens
 #define LAYOUT_rev(...)       LAYOUT_reviung41(__VA_ARGS__)
 
@@ -39,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     OSMEH,  _________________COLEMAK_L1_________________,                   _________________COLEMAK_R1_________________,   OSM(MOD_RALT),
     SYM,    _________________COLEMAK_L2_________________,                   _________________COLEMAK_R2_________________,   NAV,
     MB2_FN, _________________COLEMAK_L3_________________,                   _________________COLEMAK_R3_________________,   OSM(MOD_LCTL),
-                                    MB1_MK,     SP_SYM,        OSS_ALT,         BS_NAV,    NUM
+                                    MB1_MK,     SP_SYM,        OSS_ALT,         BS_NAV,     NUM
   ),
 
   [_FN] = LAYOUT_rev(
@@ -63,18 +64,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     TRANS,      KC_NO,          MW_DOWN,        MBTN1,      KC_NO
   ),
 
+  [_SYM] = LAYOUT_rev(
+    TRANS,  __________________SYM_L1____________________,                   __________________SYM_R1____________________,   TRANS,
+    TRANS,  __________________SYM_L2____________________,                   __________________SYM_R2____________________,   TRANS,
+    TRANS,  __________________SYM_L3____________________,                   __________________SYM_R3____________________,   TRANS,
+                                        TRANS,      TRANS,      TRANS,          BS_NUM,     TRANS
+  ),
+
   [_NUM] = LAYOUT_rev(
     TRANS,  __________________BLANK_5___________________,                   __________________BLANK_5___________________,   TO(_BASE),
     TRANS,  ___________________NUM_L____________________,                   ___________________NUM_R____________________,   TRANS,
     TRANS,  __________________BLANK_5___________________,                   __________________BLANK_5___________________,   TRANS,
                                     TRANS,      TRANS,          TRANS,          TO(_BASE),  TRANS
-  ),
-
-  [_SYM] = LAYOUT_rev(
-    TRANS,  __________________SYM_L1____________________,                   __________________SYM_R1____________________,   TRANS,
-    TRANS,  __________________SYM_L2____________________,                   __________________SYM_R2____________________,   TRANS,
-    TRANS,  __________________SYM_L3____________________,                   __________________SYM_R3____________________,   TRANS,
-                                        TRANS,      TRANS,          TRANS,          BS_NUM,  TRANS
   ),
 
   [_META] = LAYOUT_rev(
