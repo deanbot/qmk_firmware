@@ -52,7 +52,7 @@
 // Sym layer
 #define __________________SYM_L1____________________        KC_CIRC,  KC_SCOLON,KC_LABK,  KC_RABK,  KC_AMPR
 #define __________________SYM_L2____________________        KC_LCBR,  LBRACK,   KC_LPRN,  KC_COLN,  KC_AT
-#define __________________SYM_L3____________________        S_T(KC_ASTR),KC_RCBR,RBRACK,  KC_RPRN,  KC_DLR
+#define __________________SYM_L3____________________        KC_ASTR,  KC_RCBR,  RBRACK,   KC_RPRN,  KC_DLR
 
 #define __________________SYM_R1____________________        KC_PIPE,  KC_EQUAL, KC_PLUS,  KC_QUOTE, KC_GRAVE
 #define __________________SYM_R2____________________        KC_HASH,  KC_MINUS, KC_SLASH, KC_DQUO,  KC_PERC
