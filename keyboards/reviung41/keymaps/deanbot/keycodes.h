@@ -2,6 +2,11 @@
 
 #include "common.h"
 
+enum custom_keycodes {
+    MAC_SEL_L = SAFE_RANGE,
+    MAC_PROF
+};
+
 // Media tokens
 #define M_PREV KC_MEDIA_PREV_TRACK
 #define M_NEXT KC_MEDIA_NEXT_TRACK
@@ -14,24 +19,21 @@
 #define BR_DOWN KC_BRIGHTNESS_DOWN
 
 // Nav tokens
-#define STAB LSFT(KC_TAB)
-#define BS LCTL(KC_BSPACE)
-#define CBS LCTL(KC_BSPACE)
-#define CDEL LCTL(KC_DELETE)
-#define CAPS KC_CAPSLOCK
-#define CHOME LCTL(KC_HOME)
-#define CEND LCTL(KC_END)
-#define ALT_F4 LALT(KC_F4)
+#define ESC KC_ESCAPE
+#define BS KC_BSPACE
+#define DEL KC_DELETE
 #define APP KC_APPLICATION
 #define DEL_LINE LCTL(LSFT(KC_K))
-#define OGUI OSM(MOD_LGUI)
-#define OALT OSM(MOD_LALT)
-#define OSC OSM(MOD_LCTL)
-#define OSS OSM(MOD_LSFT)
 #define CKP_0 LCTL(KC_KP_0)
 #define CKP_MIN LCTL(KC_KP_MINUS)
 #define CKP_PLS LCTL(KC_KP_PLUS)
 #define PS KC_PSCREEN
+#define SEL_HOME LSFT(KC_HOME)
+#define SEL_END LSFT(KC_END)
+#define SEL_WORD LSFT(KC_D)
+#define FOC_1 LCTL(KC_0)
+#define FOC_2 LCTL(KC_1)
+#define FOC_3 LCTL(KC_2)
 
 // Mouse keycodes
 #define INCOG LCTL(LSFT(KC_N))
@@ -39,7 +41,7 @@
 #define DUPT LCTL(LSFT(KC_K))
 #define PREVT LCTL(KC_PGUP)
 #define NEXTT LCTL(KC_PGDOWN)
-#define HRLOAD LCTL(LSFT(KC_R))
+#define NEWTAB LCTL(KC_T)
 #define MLEFT KC_MS_LEFT
 #define MDOWN KC_MS_DOWN
 #define MUP KC_MS_UP
@@ -53,7 +55,6 @@
 #define MBTN3 KC_MS_BTN3
 #define MBTN2 KC_MS_BTN2
 #define MBTN1 KC_MS_BTN1
-#define BKMKS LCTL(LSFT(KC_B))
 #define BACK LALT(KC_LEFT)
 #define FWD LALT(KC_RIGHT)
 #define DEVT LCTL(LSFT(KC_I))

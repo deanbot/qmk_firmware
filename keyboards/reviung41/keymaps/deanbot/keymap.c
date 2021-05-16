@@ -1,18 +1,3 @@
-/* Copyright 2020 gtips
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 #include QMK_KEYBOARD_H
 #include "common.h"
 #include "keycodes.h"
@@ -29,31 +14,32 @@ enum layer_names {
 };
 
 enum tap_dance_codes {
-  D_FN_TASK_VIEW,
-  TD_MB1_NUM,
+  TD_MB1_MK,
   TD_MB2_FN
 };
 
 // Keycodes
+#define OSMEH OSM(MOD_MEH)
 #define NAV OSL(_NAV)
+#define SYM OSL(_SYM)
+#define NUM OSL(_NUM)
 #define TO_MOUSE TO(_MOUSE)
 #define MB2_FN TD(TD_MB2_FN)
-#define MB1_NUM TD(TD_MB1_NUM)
-#define OSS_SYM LT(_SYM, KC_F22)
-#define OSMEH_ALT ALT_T(KC_F23)
-#define SP_MO LT(_MOUSE, KC_SPACE)
-#define BSP_NAV LT(_NAV, KC_BSPACE)
-
+#define MB1_MK TD(TD_MB1_MK)
+#define OSS_ALT ALT_T(KC_F22)
+#define SP_SYM LT(_SYM, KC_SPACE)
+#define BS_NAV LT(_NAV, KC_BSPACE)
+#define BS_NUM LT(_NUM, KC_BSPACE)
 // layer tokens
 #define LAYOUT_rev(...)       LAYOUT_reviung41(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_BASE] = LAYOUT_rev(
-    KC_TAB, _________________COLEMAK_L1_________________,                   _________________COLEMAK_R1_________________,   OSM(MOD_RALT),
-    NAV,    _________________COLEMAK_L2_________________,                   _________________COLEMAK_R2_________________,   NAV,
-    MB2_FN, _________________COLEMAK_L3_________________,                   _________________COLEMAK_R3_________________,   OSM(MOD_LALT),
-                                    MB1_NUM,    SP_MO,        OSS_SYM,          BSP_NAV,    OSMEH_ALT
+    OSMEH,  _________________COLEMAK_L1_________________,                   _________________COLEMAK_R1_________________,   OSM(MOD_RALT),
+    SYM,    _________________COLEMAK_L2_________________,                   _________________COLEMAK_R2_________________,   NAV,
+    MB2_FN, _________________COLEMAK_L3_________________,                   _________________COLEMAK_R3_________________,   OSM(MOD_LCTL),
+                                    MB1_MK,     SP_SYM,        OSS_ALT,         BS_NAV,    NUM
   ),
 
   [_FN] = LAYOUT_rev(
@@ -64,31 +50,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_NAV] = LAYOUT_rev(
-    STAB,   __________________NAV_L1____________________,                   __________________NAV_R1____________________,   TO(_BASE),
-    BS,     __________________NAV_L2____________________,                   __________________NAV_R2____________________,   TRANS,
-    CBS,    __________________NAV_L3____________________,                   __________________NAV_R2____________________,   TRANS,
-                                    MO(_META),  KC_ENTER,       KC_TAB,         TRANS,      TRANS
+    TRANS,  __________________NAV_L1____________________,                   __________________NAV_R1____________________,   TO(_BASE),
+    TRANS,  __________________NAV_L2____________________,                   __________________NAV_R2____________________,   TRANS,
+    TRANS,  __________________NAV_L3____________________,                   __________________NAV_R3____________________,   TRANS,
+                                    MO(_META),  KC_ENTER,       ESC,            TRANS,      TRANS
   ),
 
   [_MOUSE] = LAYOUT_rev(
-    TRANS,  _________________MOUSE_L1___________________,                   _________________MOUSE_R1___________________,   TO(_BASE),
-    TRANS,  _________________MOUSE_L2___________________,                   _________________MOUSE_R2___________________,   TRANS,
-    TRANS,  _________________MOUSE_L3___________________,                   _________________MOUSE_R3___________________,   TRANS,
-                                    TRANS,      TRANS,          MBTN1,          TRANS,      TRANS
+    KC_NO,  _________________MOUSE_L1___________________,                   _________________MOUSE_R1___________________,   TO(_BASE),
+    KC_NO,  _________________MOUSE_L2___________________,                   _________________MOUSE_R2___________________,   TRANS,
+    KC_NO,  _________________MOUSE_L3___________________,                   _________________MOUSE_R3___________________,   KC_NO,
+                                    TRANS,      KC_NO,          MW_DOWN,        MBTN1,      KC_NO
   ),
 
   [_NUM] = LAYOUT_rev(
-    TRANS,  __________________BLANK_5___________________,                   __________________BLANK_5___________________,   TRANS,
+    TRANS,  __________________BLANK_5___________________,                   __________________BLANK_5___________________,   TO(_BASE),
     TRANS,  ___________________NUM_L____________________,                   ___________________NUM_R____________________,   TRANS,
     TRANS,  __________________BLANK_5___________________,                   __________________BLANK_5___________________,   TRANS,
-                                            __________________BLANK_5___________________
+                                    TRANS,      TRANS,          TRANS,          TO(_BASE),  TRANS
   ),
 
   [_SYM] = LAYOUT_rev(
     TRANS,  __________________SYM_L1____________________,                   __________________SYM_R1____________________,   TRANS,
     TRANS,  __________________SYM_L2____________________,                   __________________SYM_R2____________________,   TRANS,
     TRANS,  __________________SYM_L3____________________,                   __________________SYM_R3____________________,   TRANS,
-                                            __________________BLANK_5___________________
+                                        TRANS,      TRANS,          TRANS,          BS_NUM,  TRANS
   ),
 
   [_META] = LAYOUT_rev(
@@ -103,9 +89,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     // tap: oss, double-tap: caps, hold: LT
-    case OSS_SYM:
+    case OSS_ALT:
       if (record->tap.count == 2 && !record->event.pressed) {
-        tap_key(CAPS);
+        tap_key(KC_CAPS);
       } else if (record->tap.count > 0) {
         if (record->event.pressed) {
           set_oneshot_mods(MOD_LSFT);
@@ -114,15 +100,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    // tap: osmeh, hold: alt
-    case OSMEH_ALT:
-      if (record->tap.count > 0) {
+    case MAC_SEL_L:
         if (record->event.pressed) {
-          set_oneshot_mods(MOD_MEH);
+            SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_LSFT(SS_TAP(X_END)));
         }
-        return false;
-      }
-      break;
+        break;
+
+    case MAC_PROF:
+        if (record->event.pressed) {
+            SEND_STRING(SS_TAP(X_LALT) SS_DELAY(100) SS_LSFT(SS_TAP(X_TAB)) SS_DELAY(100) SS_TAP(X_SPACE) SS_DELAY(100) SS_TAP(X_TAB));
+        }
+        break;
   }
   return true;
 }
@@ -161,7 +149,7 @@ void mousekey_reset (qk_tap_dance_state_t *state, void *user_data);
 
 qk_tap_dance_action_t tap_dance_actions[] = {
   //[D_FN_TASK_VIEW] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_fn, dance_fn_finished, dance_fn_reset),
-  [TD_MB1_NUM] = ACTION_TAP_DANCE_MOUSE_LAYER(KC_MS_BTN1, _NUM),
+  [TD_MB1_MK] = ACTION_TAP_DANCE_MOUSE_LAYER(KC_MS_BTN1, _MOUSE),
   [TD_MB2_FN] = ACTION_TAP_DANCE_MOUSE_LAYER(KC_MS_BTN2, _FN)
 };
 

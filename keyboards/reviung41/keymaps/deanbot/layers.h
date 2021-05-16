@@ -6,16 +6,16 @@
 // Shared
 #define __________________BLANK_5___________________        TRANS,    TRANS,    TRANS,    TRANS,    TRANS
 #define ____________________NO_5____________________        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO
-#define ______________MODS_L______________                  KC_LSHIFT,KC_LCTRL, KC_LALT,  KC_LGUI
-#define ______________MODS_R______________                  KC_LGUI,  KC_LALT,  KC_LCTRL, KC_LSHIFT
+#define ______________MODS_L______________                  KC_LALT,  KC_LGUI,  KC_LSHIFT,KC_LCTRL
+#define ______________MODS_R______________                  KC_LCTRL, KC_LSHIFT,KC_LGUI,  KC_LALT
 
 // Base layer
 #define _________________COLEMAK_L1_________________        KC_Q,     KC_W,     KC_F,     KC_P,     KC_B
-#define _________________COLEMAK_L2_________________        KC_A,     KC_R,     KC_S,     C_T(KC_T),KC_G
+#define _________________COLEMAK_L2_________________        A_T(KC_A),KC_R,     KC_S,     C_T(KC_T),KC_G
 #define _________________COLEMAK_L3_________________        S_T(KC_Z),KC_X,     KC_C,     KC_D,     KC_V
 
 #define _________________COLEMAK_R1_________________        KC_J,     KC_L,     KC_U,     KC_Y,     KC_QUOT
-#define _________________COLEMAK_R2_________________        KC_M, C_T(KC_N),    KC_E,     KC_I,     KC_O
+#define _________________COLEMAK_R2_________________        KC_M, C_T(KC_N),    KC_E,     KC_I,     A_T(KC_O)
 #define _________________COLEMAK_R3_________________        KC_K,     KC_H,     KC_COMM,  KC_DOT,   S_T(KC_SLSH)
 
 // Fn layer
@@ -28,21 +28,21 @@
 #define ______________FN_R3_______________                  KC_F1,    KC_F2,    KC_F3,    KC_F12
 
 // Nav layer
-#define __________________NAV_L1____________________        KC_INSERT,KC_PGUP,  CHOME,    KC_PGDOWN,KC_ESCAPE
-#define __________________NAV_L2____________________        KC_LEFT,  KC_UP,    KC_DOWN,  KC_RIGHT, KC_DELETE
-#define __________________NAV_L3____________________        CAPS,     KC_HOME,  CEND,     KC_END,   CDEL
+#define __________________NAV_L1____________________        PS,       KC_PGUP,  DEL,     KC_PGDOWN,KC_HOME
+#define __________________NAV_L2____________________        KC_LEFT,  KC_UP,    KC_DOWN,  KC_RIGHT, KC_END
+#define __________________NAV_L3____________________        MAC_SEL_L,SEL_HOME, SEL_END,  BS,       SEL_WORD
 
-#define __________________NAV_R1____________________        ALT_F4,   CKP_0,    CKP_MIN,  CKP_PLS,  PS
+#define __________________NAV_R1____________________        MAC_PROF, CKP_MIN,  CKP_PLS,  CKP_0,    KC_INS
 #define __________________NAV_R2____________________        APP,      ______________MODS_R______________
-#define __________________NAV_R3____________________        DEL_LINE, OGUI,     OALT,     OSC,      OSS
+#define __________________NAV_R3____________________        DEL_LINE, KC_TAB,   FOC_1,   FOC_2,     FOC_3
 
 // Mouse layer
-#define _________________MOUSE_L1___________________        INCOG,    PREVT,    MBTN1,    NEXTT,    HRLOAD
-#define _________________MOUSE_L2___________________        KC_LSHIFT,KC_LALT,  MW_UP,    KC_LCTRL, DUPT
-#define _________________MOUSE_L3___________________        RETAB,   TOP,      MW_DOWN,  BOTTOM,   BACK
+#define _________________MOUSE_L1___________________        INCOG,    PREVT,    TOP,      NEXTT,    LGUI(KC_TAB)
+#define _________________MOUSE_L2___________________        ______________MODS_L______________,     LCTL(KC_W)
+#define _________________MOUSE_L3___________________        RETAB,    NEWTAB,   BOTTOM,   DUPT,     BACK
 
-#define _________________MOUSE_R1___________________        LCTL(KC_W),MBTN3,   MW_UP,    MBTN2,    BKMKS
-#define _________________MOUSE_R2___________________        LCTL(KC_T),MLEFT,   MDOWN,    MUP,      MRIGHT
+#define _________________MOUSE_R1___________________        CKP_MIN,  MBTN3,    MW_UP,    MBTN2,    CKP_0
+#define _________________MOUSE_R2___________________        CKP_PLS,  MLEFT,    MDOWN,    MUP,      MRIGHT
 #define _________________MOUSE_R3___________________        FWD,      MW_LEFT,  MW_DOWN,  MW_RIGHT, DEVT
 
 // Num layer
@@ -52,7 +52,7 @@
 // Sym layer
 #define __________________SYM_L1____________________        KC_CIRC,  KC_SCOLON,KC_LABK,  KC_RABK,  KC_AMPR
 #define __________________SYM_L2____________________        KC_LCBR,  LBRACK,   KC_LPRN,  KC_COLN,  KC_AT
-#define __________________SYM_L3____________________        KC_ASTR,  KC_RCBR,  RBRACK,   KC_RPRN,  KC_DLR
+#define __________________SYM_L3____________________        S_T(KC_ASTR),KC_RCBR,RBRACK,  KC_RPRN,  KC_DLR
 
 #define __________________SYM_R1____________________        KC_PIPE,  KC_EQUAL, KC_PLUS,  KC_QUOTE, KC_GRAVE
 #define __________________SYM_R2____________________        KC_HASH,  KC_MINUS, KC_SLASH, KC_DQUO,  KC_PERC
