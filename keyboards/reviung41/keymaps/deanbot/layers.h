@@ -28,13 +28,13 @@
 #define ______________FN_R3_______________                  KC_F1,    KC_F2,    KC_F3,    KC_F12
 
 // Nav layer
-#define __________________NAV_L1____________________        PS,       KC_PGUP,  DEL,     KC_PGDOWN,KC_HOME
-#define __________________NAV_L2____________________        KC_LEFT,  KC_UP,    KC_DOWN,  KC_RIGHT, KC_END
-#define __________________NAV_L3____________________        MAC_SEL_L,SEL_HOME, SEL_END,  BS,       SEL_WORD
+#define __________________NAV_L1____________________        KC_HOME,  KC_PGUP,  KC_INS,   KC_PGDOWN,KC_END
+#define __________________NAV_L2____________________        KC_LEFT,  KC_UP,    KC_DOWN,  KC_RIGHT, APP
+#define __________________NAV_L3____________________        UNDO,     DEL,      MAC_SEL_L,BS,       PS
 
-#define __________________NAV_R1____________________        MAC_PROF, CKP_MIN,  CKP_PLS,  CKP_0,    KC_INS
-#define __________________NAV_R2____________________        APP,      ______________MODS_R______________
-#define __________________NAV_R3____________________        DEL_LINE, KC_TAB,   FOC_1,   FOC_2,     FOC_3
+#define __________________NAV_R1____________________        SW_LANG,  FOC_0,    FOC_1,    FOC_2,    SW_WIN
+#define __________________NAV_R2____________________        TERM,     ______________MODS_R______________
+#define __________________NAV_R3____________________        MAC_PROF, KC_TAB,   SCREEN_L, SCREEN_R, REDO
 
 // Mouse layer
 #define _________________MOUSE_L1___________________        INCOG,    PREVT,    TOP,      NEXTT,    LGUI(KC_TAB)

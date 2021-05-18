@@ -8,3 +8,5 @@ COMMAND_ENABLE = no
 
 # reduce filesize
 EXTRAFLAGS += -flto
+
+SRC += swapper.c

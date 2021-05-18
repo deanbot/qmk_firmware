@@ -1,7 +1,9 @@
 #include QMK_KEYBOARD_H
+
 #include "common.h"
 #include "keycodes.h"
 #include "layers.h"
+#include "swapper.h"
 
 enum layer_names {
   _BASE,
@@ -38,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_BASE] = LAYOUT_rev(
     OSMEH,  _________________COLEMAK_L1_________________,                   _________________COLEMAK_R1_________________,   OSM(MOD_RALT),
-    SYM,    _________________COLEMAK_L2_________________,                   _________________COLEMAK_R2_________________,   NAV,
+    NAV,    _________________COLEMAK_L2_________________,                   _________________COLEMAK_R2_________________,   SYM,
     MB2_FN, _________________COLEMAK_L3_________________,                   _________________COLEMAK_R3_________________,   OSM(MOD_LCTL),
                                     MB1_MK,     SP_SYM,        OSS_ALT,         BS_NAV,     NUM
   ),
@@ -86,9 +88,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-// hijack an unused keycode to do mod- and layer-taps with cooler taps than just basic keycodes
+bool sw_win_active = false;
+bool sw_lang_active = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    update_swapper(
+        &sw_win_active, KC_LALT, KC_TAB, SW_WIN,
+        keycode, record
+    );
+    update_swapper(
+        &sw_lang_active, KC_LSHIFT, KC_LALT, SW_LANG,
+        keycode, record
+    );
+
   switch (keycode) {
+      // hijack an unused keycode to do mod- and layer-taps with cooler taps than just basic keycodes
     // tap: oss, double-tap: caps, hold: LT
     case OSS_ALT:
       if (record->tap.count == 2 && !record->event.pressed) {

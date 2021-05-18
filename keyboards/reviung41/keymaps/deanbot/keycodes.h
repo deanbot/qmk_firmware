@@ -4,7 +4,9 @@
 
 enum custom_keycodes {
     MAC_SEL_L = SAFE_RANGE,
-    MAC_PROF
+    MAC_PROF,
+    SW_WIN,
+    SW_LANG
 };
 
 // Media tokens
@@ -19,6 +21,11 @@ enum custom_keycodes {
 #define BR_DOWN KC_BRIGHTNESS_DOWN
 
 // Nav tokens
+#define REDO LCTL(KC_Y)
+#define COPY LCTL(KC_C)
+#define CUT LCTL(KC_X)
+#define PASTE LCTL(KC_V)
+#define UNDO LCTL(KC_Z)
 #define ESC KC_ESCAPE
 #define BS KC_BSPACE
 #define DEL KC_DELETE
@@ -31,9 +38,13 @@ enum custom_keycodes {
 #define SEL_HOME LSFT(KC_HOME)
 #define SEL_END LSFT(KC_END)
 #define SEL_WORD LSFT(KC_D)
-#define FOC_1 LCTL(KC_0)
-#define FOC_2 LCTL(KC_1)
-#define FOC_3 LCTL(KC_2)
+#define FOC_0 LCTL(KC_0)
+#define FOC_1 LCTL(KC_1)
+#define FOC_2 LCTL(KC_2)
+#define FOC_3 LCTL(KC_3)
+#define TERM LCTL(KC_GRAVE)
+#define SCREEN_L G(S(KC_LEFT))
+#define SCREEN_R G(S(KC_RIGHT))
 
 // Mouse keycodes
 #define INCOG LCTL(LSFT(KC_N))
