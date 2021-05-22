@@ -9,4 +9,6 @@ COMMAND_ENABLE = no
 # reduce filesize
 EXTRAFLAGS += -flto
 
+SRC += mousekeys.c
 SRC += swapper.c
+SRC += oneshot.c
