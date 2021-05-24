@@ -141,7 +141,7 @@ enum tap_dance_codes {
 #define _________________COLEMAK_R3_________________        KC_K,     KC_H,     KC_COMM,  KC_DOT,   KC_SCOLON
 
 // Nav layer
-#define __________________NAV_L1____________________        FOC_2,    FOC_1,    FOC_0,    APP,      SW_LANG
+#define __________________NAV_L1____________________        FOC_0,    FOC_2,    FOC_1,    APP,      SW_LANG
 #define __________________NAV_L2____________________        ______________MODS_L______________,     SW_WIN
 #define __________________NAV_L3____________________        HUD,      ESC,      SCREEN_R, KC_TAB,   SW_PROF
 
