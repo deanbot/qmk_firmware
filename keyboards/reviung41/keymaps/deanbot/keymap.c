@@ -41,11 +41,6 @@ enum tap_dance_codes {
 #define M2_META TD(TD_M2_META)
 #define M1_MK TD(TD_M1_MK)
 
-// #define C_A_CAPS ALT_T(KC_F22)
-// #define SP_SYM LT(_SYM, KC_SPACE)
-// #define BS_NAV LT(_NAV, KC_BSPACE)
-// #define BS_NUM LT(_NUM, KC_BSPACE)
-
 // define keycodes to make layers easier to read
 #define O_MEH OSM(MOD_MEH)
 #define O_SYM OSL(_SYM)
@@ -101,6 +96,7 @@ enum tap_dance_codes {
 // Mouse keycodes
 #define INCOG LCTL(LSFT(KC_N))
 #define RETAB LCTL(LSFT(KC_T))
+#define H_RFRSH C(S(KC_R))
 #define DUPT LCTL(LSFT(KC_K))
 #define PREVT LCTL(KC_PGUP)
 #define NEXTT LCTL(KC_PGDOWN)
@@ -132,8 +128,8 @@ enum tap_dance_codes {
 // Shared
 #define __________________BLANK_5___________________        TRANS,    TRANS,    TRANS,    TRANS,    TRANS
 #define ____________________NO_5____________________        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO
-#define ______________MODS_L______________                  OS_GUI,   OS_CTRL,  OS_ALT,   OS_SHFT
-#define ______________MODS_R______________                  OS_SHFT,  OS_ALT,   OS_CTRL,  OS_GUI
+#define ______________MODS_L______________                  OS_GUI,   OS_ALT,   OS_CTRL,  OS_SHFT
+#define ______________MODS_R______________                  OS_SHFT,  OS_CTRL,  OS_ALT,   OS_GUI
 
 // Base layer
 #define _________________COLEMAK_L1_________________        KC_Q,     KC_W,     KC_F,     KC_P,     KC_B
@@ -145,12 +141,12 @@ enum tap_dance_codes {
 #define _________________COLEMAK_R3_________________        KC_K,     KC_H,     KC_COMM,  KC_DOT,   KC_SCOLON
 
 // Nav layer
-#define __________________NAV_L1____________________        TERM,     FOC_2,    FOC_1,    FOC_0,    SW_LANG
+#define __________________NAV_L1____________________        FOC_2,    FOC_1,    FOC_0,    APP,      SW_LANG
 #define __________________NAV_L2____________________        ______________MODS_L______________,     SW_WIN
-#define __________________NAV_L3____________________        HINT,     ESC,      SCREEN_R, KC_TAB,   SW_PROF
+#define __________________NAV_L3____________________        TERM,     ESC,      SCREEN_R, KC_TAB,   SW_PROF
 
-#define __________________NAV_R1____________________        KC_PGUP,  SCREEN_R, KC_INS,   KC_END,   KC_PGDOWN
-#define __________________NAV_R2____________________        APP,      KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT
+#define __________________NAV_R1____________________        KC_PGUP,  KC_HOME,  KC_INS,   KC_END,   KC_NO
+#define __________________NAV_R2____________________        KC_PGDOWN,KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT
 #define __________________NAV_R3____________________        PS,       BS,       SEL_L,    DEL,      KC_CAPS
 
 // Sym layer
@@ -176,7 +172,7 @@ enum tap_dance_codes {
 #define _________________MOUSE_L3___________________        RETAB,    MW_LEFT,  MW_DOWN,  MW_RIGHT, BACK
 
 #define _________________MOUSE_R1___________________        CKP_MIN,  NEXTT,    TOP,      PREVT,    CKP_0
-#define _________________MOUSE_R2___________________        MW_DOWN,  ______________MODS_R______________
+#define _________________MOUSE_R2___________________        H_RFRSH,  ______________MODS_R______________
 #define _________________MOUSE_R3___________________        FWD,      NEWTAB,   BOTTOM,   DUPT,     CKP_PLS
 
 // Meta layer
