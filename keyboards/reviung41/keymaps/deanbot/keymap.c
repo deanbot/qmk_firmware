@@ -143,16 +143,16 @@ enum tap_dance_codes {
 // Nav layer
 #define __________________NAV_L1____________________        FOC_2,    FOC_1,    FOC_0,    APP,      SW_LANG
 #define __________________NAV_L2____________________        ______________MODS_L______________,     SW_WIN
-#define __________________NAV_L3____________________        TERM,     ESC,      SCREEN_R, KC_TAB,   SW_PROF
+#define __________________NAV_L3____________________        HUD,      ESC,      SCREEN_R, KC_TAB,   SW_PROF
 
-#define __________________NAV_R1____________________        KC_PGUP,  KC_HOME,  KC_INS,   KC_END,   KC_NO
+#define __________________NAV_R1____________________        KC_PGUP,  KC_HOME,  KC_INS,   KC_END,   TERM
 #define __________________NAV_R2____________________        KC_PGDOWN,KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT
 #define __________________NAV_R3____________________        PS,       BS,       SEL_L,    DEL,      KC_CAPS
 
 // Sym layer
 #define __________________SYM_L1____________________        KC_TILD,  KC_LCBR,  LBRACK,  KC_LPRN,   KC_CIRC
-#define __________________SYM_L2____________________        KC_MINUS, KC_ASTR,  KC_EQUAL,KC_UNDS,   KC_HASH
-#define __________________SYM_L3____________________        KC_PLUS,  KC_PIPE,  KC_AT,   KC_SLASH,  KC_PERC
+#define __________________SYM_L2____________________        KC_MINUS, KC_PLUS,  KC_EQUAL,KC_UNDS,   KC_HASH
+#define __________________SYM_L3____________________        KC_ASTR,  KC_PIPE,  KC_AT,   KC_SLASH,  KC_PERC
 
 #define __________________SYM_R1____________________        TRANS,  KC_RPRN,  RBRACK,  KC_RCBR,   KC_GRAVE
 #define __________________SYM_R2____________________        KC_DLR,   ______________MODS_R______________
@@ -207,7 +207,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_rev(
     TRANS,  __________________NAV_L1____________________,                   __________________NAV_R1____________________,   T_BASE,
-    TRANS,  __________________NAV_L2____________________,                   __________________NAV_R2____________________,   HUD,
+    TRANS,  __________________NAV_L2____________________,                   __________________NAV_R2____________________,   TRANS,
     TRANS,  __________________NAV_L3____________________,                   __________________NAV_R3____________________,   TRANS,
                                     TRANS,      TRANS,          KC_SPACE,       KC_ENTER,   TRANS
   ),
