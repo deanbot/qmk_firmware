@@ -53,6 +53,7 @@ enum tap_dance_codes {
 #define T_BASE TO(_BASE)
 #define T_MOUSE TO(_MOUSE)
 #define T_NAV TO(_NAV)
+#define M_META MO(_META)
 #define WAKE KC_SYSTEM_WAKE
 #define SLEEP KC_SYSTEM_SLEEP
 #define M_PREV KC_MEDIA_PREV_TRACK
@@ -101,6 +102,7 @@ enum tap_dance_codes {
 #define PREVT LCTL(KC_PGUP)
 #define NEXTT LCTL(KC_PGDOWN)
 #define NEWTAB LCTL(KC_T)
+#define CLOSET LCTL(KC_W)
 #define MLEFT KC_MS_LEFT
 #define MDOWN KC_MS_DOWN
 #define MUP KC_MS_UP
@@ -141,22 +143,23 @@ enum tap_dance_codes {
 #define _________________COLEMAK_R3_________________        KC_K,     KC_H,     KC_COMM,  KC_DOT,   KC_SCOLON
 
 // Nav layer
-#define __________________NAV_L1____________________        FOC_0,    FOC_2,    FOC_1,    APP,      SW_LANG
+#define __________________NAV_L1____________________        T_BASE,   O_MEH,    KC_NO,    APP,      SW_LANG
 #define __________________NAV_L2____________________        ______________MODS_L______________,     SW_WIN
 #define __________________NAV_L3____________________        HUD,      ESC,      SCREEN_R, KC_TAB,   SW_PROF
 
-#define __________________NAV_R1____________________        KC_PGUP,  KC_HOME,  KC_INS,   KC_END,   TERM
-#define __________________NAV_R2____________________        KC_PGDOWN,KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT
+#define __________________NAV_R1____________________        KC_PGDOWN,KC_HOME,  KC_INS,   KC_END,   TERM
+#define __________________NAV_R2____________________        KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT
 #define __________________NAV_R3____________________        PS,       BS,       SEL_L,    DEL,      KC_CAPS
 
 // Sym layer
-#define __________________SYM_L1____________________        KC_TILD,  KC_LCBR,  LBRACK,  KC_LPRN,   KC_CIRC
+#define __________________SYM_L1____________________        KC_TILD,  KC_LCBR,  LBRACK,  KC_LPRN,   KC_SCOLON
 #define __________________SYM_L2____________________        KC_MINUS, KC_PLUS,  KC_EQUAL,KC_UNDS,   KC_HASH
 #define __________________SYM_L3____________________        KC_ASTR,  KC_PIPE,  KC_AT,   KC_SLASH,  KC_PERC
 
-#define __________________SYM_R1____________________        TRANS,  KC_RPRN,  RBRACK,  KC_RCBR,   KC_GRAVE
+#define __________________SYM_R1____________________        KC_CIRC,    KC_RPRN,  RBRACK,  KC_RCBR, KC_GRAVE
 #define __________________SYM_R2____________________        KC_DLR,   ______________MODS_R______________
 #define __________________SYM_R3____________________        TRANS,    KC_BSLASH,KC_AMPR, KC_EXLM,  KC_QUES
+
 // Num layer
 #define ___________________NUM_L1___________________        KC_7,     KC_5,     KC_3,     KC_1,     KC_9
 #define ___________________NUM_L2___________________        ______________MODS_L______________,     KC_F11
@@ -167,22 +170,22 @@ enum tap_dance_codes {
 #define ___________________NUM_R3___________________        KC_F8,    KC_F10,   KC_F2,    KC_F4,    KC_F6
 
 // Mouse layer
-#define _________________MOUSE_L1___________________        INCOG,    MBTN2,    MW_UP,    MBTN3,    DEVT
-#define _________________MOUSE_L2___________________        MLEFT,    MUP,      MDOWN,    MRIGHT,   LCTL(KC_W)
-#define _________________MOUSE_L3___________________        RETAB,    MW_LEFT,  MW_DOWN,  MW_RIGHT, BACK
+#define _________________MOUSE_L1___________________        CKP_PLS,  MBTN2,    MW_UP,    MBTN3,    CKP_MIN
+#define _________________MOUSE_L2___________________        MLEFT,    MUP,      MDOWN,    MRIGHT,   H_RFRSH
+#define _________________MOUSE_L3___________________        CKP_0,    MW_LEFT,  MW_DOWN,  MW_RIGHT, BACK
 
-#define _________________MOUSE_R1___________________        CKP_MIN,  NEXTT,    TOP,      PREVT,    CKP_0
-#define _________________MOUSE_R2___________________        H_RFRSH,  ______________MODS_R______________
-#define _________________MOUSE_R3___________________        FWD,      NEWTAB,   BOTTOM,   DUPT,     CKP_PLS
+#define _________________MOUSE_R1___________________        DEVT,     PREVT,    TOP,      NEXTT,    T_BASE
+#define _________________MOUSE_R2___________________        CLOSET,   ______________MODS_R______________
+#define _________________MOUSE_R3___________________        FWD,      NEWTAB,   BOTTOM,   DUPT,     RETAB
 
 // Meta layer
-#define _________________META_L1____________________        T_QWERTY, KC_NO,    BR_UP,    BR_DOWN,  T_NAV
-#define _________________META_L2____________________        M_STOP,   MUTE,     VOL_UP,   VOL_DOWN, T_MOUSE
-#define _________________META_L3____________________        KC_NO,    M_PAUSE,  M_PREV,   M_NEXT,   T_BASE
+#define _________________META_L1____________________        SLEEP,    WAKE,     KC_NO,    T_BASE,   RESET
+#define _________________META_L2____________________        KC_NO,    BR_UP,    BR_DOWN,  T_MOUSE,  KC_NO
+#define _________________META_L3____________________        T_QWERTY, KC_NO,    KC_NO,    T_NAV,    EEP_RST
 
-#define _________________META_R1____________________        RGB_SPD,  RGB_SPI,  RGB_MOD,  KC_NO,    RESET
-#define _________________META_R2____________________        WAKE,     RGB_VAD,  RGB_VAI,  RGB_TOG,  KC_NO
-#define _________________META_R3____________________        SLEEP,    RGB_HUD,  RGB_HUI,  KC_NO,    KC_NO
+#define _________________META_R1____________________        M_PAUSE,  RGB_SPD,  RGB_SPI,  RGB_MOD,  RGB_TOG
+#define _________________META_R2____________________        M_STOP,   RGB_VAD,  RGB_VAI,  RGB_HUD,  RGB_HUI
+#define _________________META_R3____________________        MUTE,     M_PREV,   VOL_DOWN, VOL_UP,   M_NEXT
 
 // Qwerty layer
 #define ________________QWERTY_L1___________________        KC_Q,     KC_W,     KC_E,     KC_R,      KC_T
@@ -216,7 +219,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRANS,  __________________SYM_L1____________________,                   __________________SYM_R1____________________,   TRANS,
     TRANS,  __________________SYM_L2____________________,                   __________________SYM_R2____________________,   TRANS,
     TRANS,  __________________SYM_L3____________________,                   __________________SYM_R3____________________,   TRANS,
-                                            __________________BLANK_5___________________
+                                TRANS,      M_META,             TRANS,          TRANS,      TRANS
   ),
 
   [_NUM] = LAYOUT_rev(
