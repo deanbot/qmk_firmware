@@ -299,11 +299,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     // via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
     // one shot implementation w/o timers
-    update_oneshot(
+    update_oneshot_modifiers(
         &os_shft_state, KC_LSHIFT, OS_SHFT,
         keycode, record
     );
-    update_oneshot(
+    update_oneshot_modifiers(
         &os_ctrl_state, KC_LCTL, OS_CTRL,
         keycode, record
     );

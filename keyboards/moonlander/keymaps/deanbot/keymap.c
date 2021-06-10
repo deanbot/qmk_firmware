@@ -63,6 +63,7 @@ enum tap_dance_codes {
 #define M_NAV MO(_NAV)
 #define M_SYM MO(_SYM)
 #define SP_MK LT(_MOUSE, KC_SPACE)
+#define O_AGR OSM(MOD_RALT)
 
 // Meta tokens
 #define T_QWERTY TO(_QWERTY)
@@ -223,8 +224,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         O_MEH,   _________________COLEMAK_L1_________________,_______,         _______, _________________COLEMAK_R1_________________,OSM(MOD_RALT),
         O_SYM,   _________________COLEMAK_L2_________________,_______,         _______, _________________COLEMAK_R2_________________,OSM(MOD_LALT),
         M2_META, _________________COLEMAK_L3_________________,                          _________________COLEMAK_R3_________________,OSM(MOD_LCTL),
-        _______, _______, _______, M_NAV,   M_NAV,            HINT,            RFCTR,            M_SYM,   M_SYM,   _______, _______, _______,
-                                            OS_SHFT,  MBTN1,  _______,         _______, MBTN2,   SP_MK
+        _______, _______, _______, O_AGR,   M_NAV,            HINT,            RFCTR,            M_SYM,   KC_LGUI, _______, _______, _______,
+                                            OS_SHFT,  MBTN1,  _______,         _______, ESC,   SP_MK
     ),
     [_NAV] = LAYOUT_moon(
         _______, __________________BLANK_5___________________,_______,         _______, __________________BLANK_5___________________,_______,
