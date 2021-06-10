@@ -109,7 +109,7 @@ enum tap_dance_codes {
 #define SCREEN_L G(S(KC_LEFT))
 #define SCREEN_R G(S(KC_RIGHT))
 #define HINT LCTL(KC_SPACE)
-#define RFCTR LCTRL(KC_DOT)
+#define RFCTR LCTL(KC_DOT)
 
 // Mouse keycodes
 #define INCOG LCTL(LSFT(KC_N))
@@ -214,91 +214,91 @@ enum tap_dance_codes {
 #define ________________QWERTY_R3___________________        KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH
 
 // layer tokens
-#define LAYOUT_moon (...)       LAYOUT_moonlander(__VA_ARGS__)
+#define LAYOUT_moon(...)       LAYOUT_moonlander(__VA_ARGS__)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_moon(
-        _______, ____________________NO_5____________________,_______,           _______, ____________________NO_5____________________,_______,
-        O_MEH,   _________________COLEMAK_L1_________________,_______,           _______, _________________COLEMAK_R1_________________,OSM(MOD_RALT),
-        O_SYM,   _________________COLEMAK_L2_________________,_______,           _______, _________________COLEMAK_R2_________________,OSM(MOD_LALT),
-        M2_META, _________________COLEMAK_L3_________________,                            _________________COLEMAK_R2_________________,OSM(MOD_LCTL),
-        _______, _______, _______, C(KC_D), M_NAV,            HINT,              RFCTR,            M_SYM,  DEL_LINE, _______, _______, ______,
-                                            OS_SHFT,  MBTN1,  _______,           _______, MBTN2,   SP_MK
+        _______, ____________________NO_5____________________,_______,         _______, ____________________NO_5____________________,_______,
+        O_MEH,   _________________COLEMAK_L1_________________,_______,         _______, _________________COLEMAK_R1_________________,OSM(MOD_RALT),
+        O_SYM,   _________________COLEMAK_L2_________________,_______,         _______, _________________COLEMAK_R2_________________,OSM(MOD_LALT),
+        M2_META, _________________COLEMAK_L3_________________,                          _________________COLEMAK_R2_________________,OSM(MOD_LCTL),
+        _______, _______, _______, C(KC_D), M_NAV,            HINT,            RFCTR,            M_SYM,  DEL_LINE, _______, _______, _______,
+                                            OS_SHFT,  MBTN1,  _______,         _______, MBTN2,   SP_MK
     ),
     [_NAV] = LAYOUT_moon(
-        _______, __________________BLANK_5___________________,_______,           _______, __________________BLANK_5___________________,_______
-        TRANS,   __________________NAV_L1____________________,_______,           _______, __________________NAV_R1____________________,TO(_BASE),
-        TRANS,   __________________NAV_L2____________________,_______,           _______, __________________NAV_R2____________________,TRANS,
-        TRANS,   __________________NAV_L3____________________,                            __________________NAV_R3____________________,TRANS,
-        _______, _______, _______, TRANS,   TRANS,            TRANS,             TRANS,            TRANS,  TRANS,    _______, _______, _______,
-                                            TRANS,   TRANS,  _______,           _______, KC_SPACE, KC_ENTER
+        _______, __________________BLANK_5___________________,_______,         _______, __________________BLANK_5___________________,_______,
+        TRANS,   __________________NAV_L1____________________,_______,         _______, __________________NAV_R1____________________,TO(_BASE),
+        TRANS,   __________________NAV_L2____________________,_______,         _______, __________________NAV_R2____________________,TRANS,
+        TRANS,   __________________NAV_L3____________________,                          __________________NAV_R3____________________,TRANS,
+        _______, _______, _______, TRANS,   TRANS,            TRANS,           TRANS,            TRANS,   TRANS,   _______, _______, _______,
+                                            TRANS,   TRANS,  _______,          _______, KC_SPACE, KC_ENTER
     ),
     [_SYM] = LAYOUT_moon(
-        _______, __________________BLANK_5___________________,_______,           _______, __________________BLANK_5___________________,_______
-        TRANS,   __________________SYM_L1____________________,_______,           _______, __________________SYM_R1____________________,TRANS,
-        TRANS,   __________________SYM_L2____________________,_______,           _______, __________________SYM_R2____________________,TRANS,
-        TRANS,   __________________SYM_L3____________________                             __________________SYM_R3____________________,TRANS,
-        _______, _______, _______, TRANS,   TRANS,            TRANS,             TRANS,            TRANS,  TRANS,    _______, _______, _______,
-                                            M_META,   TRANS,  _______,           _______, TRANS,   TRANS
+        _______, __________________BLANK_5___________________,_______,         _______, __________________BLANK_5___________________,_______,
+        TRANS,   __________________SYM_L1____________________,_______,         _______, __________________SYM_R1____________________,TRANS,
+        TRANS,   __________________SYM_L2____________________,_______,         _______, __________________SYM_R2____________________,TRANS,
+        TRANS,   __________________SYM_L3____________________,                          __________________SYM_R3____________________,TRANS,
+        _______, _______, _______, TRANS,   TRANS,            TRANS,           TRANS,            TRANS,   TRANS,   _______, _______, _______,
+                                            M_META,   TRANS,  _______,         _______, TRANS,   TRANS
     ),
     [_NUM] = LAYOUT_moon(
-        _______, __________________BLANK_5___________________,_______,           _______, __________________BLANK_5___________________,_______
-        TRANS,   ___________________NUM_L1___________________,_______,           _______, ___________________NUM_R1___________________,TO(_BASE),
-        TRANS,   ___________________NUM_L2___________________,_______,           _______, ___________________NUM_R2___________________,TRANS,
-        TRANS,   ___________________NUM_L3___________________,                            ___________________NUM_R3___________________,TRANS,
-        _______, _______, _______, TRANS,   TRANS,            TRANS,             TRANS,            TRANS,  TRANS,    _______, _______, _______,
-                                            TRANS,   TRANS,  _______,           _______, TRANS,    TRANS
+        _______, __________________BLANK_5___________________,_______,         _______, __________________BLANK_5___________________,_______,
+        TRANS,   ___________________NUM_L1___________________,_______,         _______, ___________________NUM_R1___________________,TO(_BASE),
+        TRANS,   ___________________NUM_L2___________________,_______,         _______, ___________________NUM_R2___________________,TRANS,
+        TRANS,   ___________________NUM_L3___________________,                          ___________________NUM_R3___________________,TRANS,
+        _______, _______, _______, TRANS,   TRANS,            TRANS,           TRANS,            TRANS,   TRANS,   _______, _______, _______,
+                                            TRANS,   TRANS,  _______,          _______, TRANS,   TRANS
     ),
     [_MOUSE] = LAYOUT_moon(
-        _______, __________________BLANK_5___________________,_______,           _______, __________________BLANK_5___________________,_______
-        TRANS,   _________________MOUSE_L1___________________,_______,           _______, _________________MOUSE_R1___________________,TO(_BASE),
-        TRANS,   _________________MOUSE_L2___________________,_______,           _______, _________________MOUSE_R2___________________,TRANS,
-        TRANS,   _________________MOUSE_L3___________________,                            _________________MOUSE_R3___________________,TRANS,
-        _______, _______, _______, TRANS,   MW_DOWN,          TRANS,             TRANS,            MW_DOWN,  TRANS,  _______, _______, _______,
-                                            MBTN1,   TRANS,  _______,           _______, TRANS,    MBTN1
+        _______, __________________BLANK_5___________________,_______,         _______, __________________BLANK_5___________________,_______,
+        TRANS,   _________________MOUSE_L1___________________,_______,         _______, _________________MOUSE_R1___________________,TO(_BASE),
+        TRANS,   _________________MOUSE_L2___________________,_______,         _______, _________________MOUSE_R2___________________,TRANS,
+        TRANS,   _________________MOUSE_L3___________________,                          _________________MOUSE_R3___________________,TRANS,
+        _______, _______, _______, TRANS,   MW_DOWN,          TRANS,           TRANS,            MW_DOWN, TRANS,   _______, _______, _______,
+                                            MBTN1,   TRANS,   _______,         _______, TRANS,   MBTN1
     ),
     [_META] = LAYOUT_moon(
-        _______, __________________BLANK_5___________________,_______,           _______, __________________BLANK_5___________________,_______
-        TRANS,   _________________META_L1____________________,_______,           _______, _________________META_R1____________________,RESET,
-        TRANS,   _________________META_L2____________________,_______,           _______, _________________META_R2____________________,TRANS,
-        TRANS,   _________________META_L3____________________,                            _________________META_R3____________________,TRANS,
-        _______, _______, _______, TRANS,   TRANS,            TRANS,             TRANS,            TRANS,  TRANS,    _______, _______, _______,
-                                            TRANS,   TRANS,  _______,           _______, TRANS,    TRANS
+        _______, __________________BLANK_5___________________,_______,         _______, __________________BLANK_5___________________,_______,
+        TRANS,   _________________META_L1____________________,_______,         _______, _________________META_R1____________________,RESET,
+        TRANS,   _________________META_L2____________________,_______,         _______, _________________META_R2____________________,TRANS,
+        TRANS,   _________________META_L3____________________,                          _________________META_R3____________________,TRANS,
+        _______, _______, _______, TRANS,   TRANS,            TRANS,           TRANS,            TRANS,   TRANS,   _______, _______, _______,
+                                            TRANS,   TRANS,   _______,         _______, TRANS,   TRANS
     ),
     [_QWERTY] = LAYOUT_moon(
-        _______, __________________BLANK_5___________________,_______,           _______, __________________BLANK_5___________________,_______
-        TRANS,   ________________QWERTY_L1___________________,_______,           _______, ________________QWERTY_R1___________________,TO(_BASE),
-        TRANS,   ________________QWERTY_L2___________________,_______,           _______, ________________QWERTY_R1___________________,KC_QUOT,
-        TRANS,   ________________QWERTY_L3___________________,                            ________________QWERTY_R1___________________,TRANS,
-        _______, _______, _______, TRANS,   TRANS,            TRANS,             TRANS,            TRANS,  TRANS,    _______, _______, _______,
-                                            TRANS,   TRANS,  _______,           _______, TRANS,    TRANS
+        _______, __________________BLANK_5___________________,_______,        _______, __________________BLANK_5___________________,_______,
+        TRANS,   ________________QWERTY_L1___________________,_______,        _______, ________________QWERTY_R1___________________,TO(_BASE),
+        TRANS,   ________________QWERTY_L2___________________,_______,        _______, ________________QWERTY_R1___________________,KC_QUOT,
+        TRANS,   ________________QWERTY_L3___________________,                         ________________QWERTY_R1___________________,TRANS,
+        _______, _______, _______, TRANS,   TRANS,            TRANS,          TRANS,            TRANS,   TRANS,   _______, _______, _______,
+                                            TRANS,   TRANS,   _______,        _______, TRANS,   TRANS
     )
 };
 
 // via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
-    case M_SYM:
-    case M_NAV:
-        return true;
-    default:
-        return false;
+        case M_SYM:
+        case M_NAV:
+            return true;
+        default:
+            return false;
     }
 }
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-    case M_SYM:
-    case M_NAV:
-    case KC_LSFT:
-    case OS_SHFT:
-    case OS_CTRL:
-    case OS_ALT:
-    case OS_GUI:
-        return true;
-    default:
-        return false;
+        case M_SYM:
+        case M_NAV:
+        case KC_LSFT:
+        case OS_SHFT:
+        case OS_CTRL:
+        case OS_ALT:
+        case OS_GUI:
+            return true;
+        default:
+            return false;
     }
 }
 
@@ -341,29 +341,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         keycode, record
     );
 
-  switch (keycode) {
-
-     /*
+    switch (keycode) {
+    /*
     // hijack an unused keycode to do mod- and layer-taps with cooler taps than just basic keycodes
     case C_A_CAPS:
 
-      // caps on double tap
-      if (record->tap.count == 2 && !record->event.pressed) {
-        tap_key(KC_CAPS);
-      } else if (record->tap.count > 0) {
-        // osm ctrl on tap
-        if (record->event.pressed) {
-          set_oneshot_mods(MOD_LCTL);
+        // caps on double tap
+        if (record->tap.count == 2 && !record->event.pressed) {
+            tap_key(KC_CAPS);
+        } else if (record->tap.count > 0) {
+            // osm ctrl on tap
+            if (record->event.pressed) {
+                set_oneshot_mods(MOD_LCTL);
+            }
+
+            // alt on hold
+            return false;
         }
-
-        // alt on hold
-        return false;
-      }
-      break; */
-
-    case VRSN:
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-    return false;
+        break; */
 
     // select line
     case SEL_L:
@@ -378,126 +373,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(SS_TAP(X_LALT) SS_DELAY(100) SS_LSFT(SS_TAP(X_TAB)) SS_DELAY(100) SS_TAP(X_SPACE) SS_DELAY(100) SS_TAP(X_TAB));
         }
         break;
-  }
-  return true;
-}
-
-#define ACTION_TAP_DANCE_MOUSE_LAYER(kc1, layer) \
-  { .fn = {mousekey_tap, mousekey_finished, mousekey_reset}, .user_data = (void *)&((qk_tap_dance_pair_t){kc1, layer}),  }
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-  //[D_FN_TASK_VIEW] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_fn, dance_fn_finished, dance_fn_reset),
-  [TD_M1_MK] = ACTION_TAP_DANCE_MOUSE_LAYER(KC_MS_BTN1, _MOUSE),
-  [TD_M2_META] = ACTION_TAP_DANCE_MOUSE_LAYER(KC_MS_BTN2, _META),
-};
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _SYM, _NAV, _NUM);
-}
-        }
     }
     return true;
-
-// via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
-bool is_oneshot_cancel_key(uint16_t keycode) {
-    switch (keycode) {
-    case M_SYM:
-    case M_NAV:
-        return true;
-    default:
-        return false;
-    }
-}
-
-bool is_oneshot_ignored_key(uint16_t keycode) {
-    switch (keycode) {
-    case M_SYM:
-    case M_NAV:
-    case KC_LSFT:
-    case OS_SHFT:
-    case OS_CTRL:
-    case OS_ALT:
-    case OS_GUI:
-        return true;
-    default:
-        return false;
-    }
-}
-
-bool sw_win_active = false;
-bool sw_lang_active = false;
-
-oneshot_state os_shft_state = os_up_unqueued;
-oneshot_state os_ctrl_state = os_up_unqueued;
-oneshot_state os_alt_state = os_up_unqueued;
-oneshot_state os_gui_state = os_up_unqueued;
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
-    // single key alt tab and shift alt for layers
-    update_swapper(
-        &sw_win_active, KC_LALT, KC_TAB, SW_WIN,
-        keycode, record
-    );
-    update_swapper(
-        &sw_lang_active, KC_LSHIFT, KC_LALT, SW_LANG,
-        keycode, record
-    );
-
-    // via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
-    // one shot implementation w/o timers
-    update_oneshot(
-        &os_shft_state, KC_LSHIFT, OS_SHFT,
-        keycode, record
-    );
-    update_oneshot(
-        &os_ctrl_state, KC_LCTL, OS_CTRL,
-        keycode, record
-    );
-    update_oneshot(
-        &os_alt_state, KC_LALT, OS_ALT,
-        keycode, record
-    );
-    update_oneshot(
-        &os_gui_state, KC_LGUI, OS_GUI,
-        keycode, record
-    );
-
-  switch (keycode) {
-
-     /*
-    // hijack an unused keycode to do mod- and layer-taps with cooler taps than just basic keycodes
-    case C_A_CAPS:
-
-      // caps on double tap
-      if (record->tap.count == 2 && !record->event.pressed) {
-        tap_key(KC_CAPS);
-      } else if (record->tap.count > 0) {
-        // osm ctrl on tap
-        if (record->event.pressed) {
-          set_oneshot_mods(MOD_LCTL);
-        }
-
-        // alt on hold
-        return false;
-      }
-      break; */
-
-    // select line
-    case SEL_L:
-        if (record->event.pressed) {
-            SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_LSFT(SS_TAP(X_END)));
-        }
-        break;
-
-    // tab to first profile in edge
-    case SW_PROF:
-        if (record->event.pressed) {
-            SEND_STRING(SS_TAP(X_LALT) SS_DELAY(100) SS_LSFT(SS_TAP(X_TAB)) SS_DELAY(100) SS_TAP(X_SPACE) SS_DELAY(100) SS_TAP(X_TAB));
-        }
-        break;
-  }
-  return true;
 }
 
 #define ACTION_TAP_DANCE_MOUSE_LAYER(kc1, layer) \
