@@ -2,7 +2,6 @@
 
 #include "oneshot.h"
 #include "swapper.h"
-#include "mousekeys.h"
 
 // utilities
 #define S_T(...)  LSFT_T(__VA_ARGS__)
@@ -115,7 +114,7 @@ enum custom_keycodes {
 #define TRANS KC_TRANSPARENT
 
 // Shared
-#define __________________BLANK_4___________________        TRANS,    TRANS,    TRANS,    TRANS,
+#define __________________BLANK_4___________________        TRANS,    TRANS,    TRANS,    TRANS
 #define ____________________NO_5____________________        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO
 #define ______________MODS_L______________                  OS_GUI,   OS_ALT,   OS_CTRL,  OS_SHFT
 #define ______________MODS_R______________                  OS_SHFT,  OS_CTRL,  OS_ALT,   OS_GUI
@@ -143,9 +142,9 @@ enum custom_keycodes {
 #define __________________SYM_L2____________________        KC_MINUS, KC_PLUS,  KC_EQUAL,KC_UNDS,   KC_HASH
 #define __________________SYM_L3____________________        KC_ASTR,  KC_PIPE,  KC_AT,   KC_SLASH,  KC_PERC
 
-#define __________________SYM_R1____________________        KC_CIRC,    KC_RPRN,  RBRACK,  KC_RCBR, KC_GRAVE
+#define __________________SYM_R1____________________        KC_CIRC,  KC_RPRN,  RBRACK,  KC_RCBR,   KC_GRAVE
 #define __________________SYM_R2____________________        KC_DLR,   ______________MODS_R______________
-#define __________________SYM_R3____________________        TRANS,    KC_BSLASH,KC_AMPR, KC_EXLM,  KC_QUES
+#define __________________SYM_R3____________________        TRANS,    KC_BSLASH,KC_AMPR, KC_EXLM,   KC_QUES
 
 // Num layer
 #define ___________________NUM_L1___________________        KC_7,     KC_5,     KC_3,     KC_1,     KC_9
@@ -175,67 +174,66 @@ enum custom_keycodes {
 #define _________________META_R3____________________        MUTE,     M_PREV,   VOL_DOWN, VOL_UP,   M_NEXT
 
 // Qwerty layer
-#define ________________QWERTY_L1___________________        KC_Q,     KC_W,     KC_E,     KC_R,      KC_T
-#define ________________QWERTY_L2___________________        KC_A,     KC_S,     KC_D,     KC_F,      KC_G
-#define ________________QWERTY_L3___________________        KC_Z,     KC_X,     KC_C,     KC_V,      KC_B
+#define ________________QWERTY_L1___________________        KC_Q,     KC_W,     KC_E,     KC_R,     KC_T
+#define ________________QWERTY_L2___________________        KC_A,     KC_S,     KC_D,     KC_F,     KC_G
+#define ________________QWERTY_L3___________________        KC_Z,     KC_X,     KC_C,     KC_V,     KC_B
 
 #define ________________QWERTY_R1___________________        KC_Y,     KC_U,     KC_I,     KC_O,     KC_P
 #define ________________QWERTY_R2___________________        KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN
 #define ________________QWERTY_R3___________________        KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH
 
 // layer tokens
-#define LAYOUT_rev(...)       LAYOUT_reviung41(__VA_ARGS__)
-
+#define LAYOUT_ferris(...)       LAYOUT(__VA_ARGS__)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  [_BASE] = LAYOUT_rev(
+  [_BASE] = LAYOUT_ferris(
     _________________COLEMAK_L1_________________,       _________________COLEMAK_R1_________________,
     _________________COLEMAK_L2_________________,       _________________COLEMAK_R2_________________,
     _________________COLEMAK_L3_________________,       _________________COLEMAK_R3_________________,
                             M_NAV,      OS_SHFT,        SP_MK,      M_SYM
   ),
 
-  [_NAV] = LAYOUT_rev(
+  [_NAV] = LAYOUT_ferris(
     __________________NAV_L1____________________,       __________________NAV_R1____________________,
     __________________NAV_L2____________________,       __________________NAV_R2____________________,
     __________________NAV_L3____________________,       __________________NAV_R3____________________,
                             TRANS,      TRANS,          KC_ENTER,   TRANS
   ),
 
-  [_SYM] = LAYOUT_rev(
+  [_SYM] = LAYOUT_ferris(
     __________________SYM_L1____________________,       __________________SYM_R1____________________,
     __________________SYM_L2____________________,       __________________SYM_R2____________________,
     __________________SYM_L3____________________,       __________________SYM_R3____________________,
                             TRANS,      M_META,         TRANS,      TRANS
   ),
 
-  [_NUM] = LAYOUT_rev(
+  [_NUM] = LAYOUT_ferris(
     ___________________NUM_L1___________________,       ___________________NUM_R1___________________,
     ___________________NUM_L2___________________,       ___________________NUM_R2___________________,
     ___________________NUM_L3___________________,       ___________________NUM_R3___________________,
                                 __________________BLANK_4___________________
   ),
 
-  [_MOUSE] = LAYOUT_rev(
+  [_MOUSE] = LAYOUT_ferris(
     _________________MOUSE_L1___________________,       _________________MOUSE_R1___________________,
     _________________MOUSE_L2___________________,       _________________MOUSE_R2___________________,
     _________________MOUSE_L3___________________,       _________________MOUSE_R3___________________,
                             MW_DOWN,    MBTN1,          MBTN1,      MW_DOWN
   ),
 
-  [_META] = LAYOUT_rev(
+  [_META] = LAYOUT_ferris(
     _________________META_L1____________________,       _________________META_R1____________________,
     _________________META_L2____________________,       _________________META_R2____________________,
     _________________META_L3____________________,       _________________META_R3____________________,
                                 __________________BLANK_4___________________
   ),
 
-  [_QWERTY] = LAYOUT_rev(
+  [_QWERTY] = LAYOUT_ferris(
     ________________QWERTY_L1___________________,        ________________QWERTY_R1___________________,
     ________________QWERTY_L2___________________,        ________________QWERTY_R2___________________,
     ________________QWERTY_L3___________________,        ________________QWERTY_R3___________________,
                                 __________________BLANK_4___________________
-  ),
+  )
 };
 
 // via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
