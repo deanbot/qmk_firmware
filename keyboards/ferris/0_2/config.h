@@ -23,10 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEVICE_VER 0x0002
 #define MANUFACTURER Pierre
 #define PRODUCT Ferris the keeb
-<<<<<<< HEAD
-=======
-#define DESCRIPTION A minimalistic 34 - keys split keyboard
->>>>>>> pierre/bling_underglow
 
 /* key matrix size */
 #define MATRIX_ROWS 8
@@ -69,10 +65,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEBOUNCE 5
 
 /* i2c settings */
-<<<<<<< HEAD
-
-=======
->>>>>>> pierre/bling_underglow
 #define I2C_DRIVER I2CD2
 #define I2C1_SCL_BANK GPIOB
 #define I2C1_SCL 10
@@ -85,7 +77,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define I2C1_TIMINGR_SCLL 26U
 #define I2C1_SCL_PAL_MODE 1
 #define I2C1_SDA_PAL_MODE 1
-<<<<<<< HEAD
-=======
-
->>>>>>> pierre/bling_underglow

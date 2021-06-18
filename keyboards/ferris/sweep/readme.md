@@ -1,18 +1,13 @@
 # Ferris sweep
 
-<<<<<<< HEAD
-![Ferris sweep, top view](https://i.imgur.com/5qCZUv6h.jpg)
-![Ferris sweep, bottom view](https://i.imgur.com/ZC47CJth.jpg)
-=======
 ![Ferris sweep, top view](https://i.imgur.com/5qCZUv6.jpg)
 ![Ferris sweep, bottom view](https://i.imgur.com/ZC47CJt.jpg)
->>>>>>> pierre/bling_underglow
 
 A version of the Ferris keyboard that uses a daughterboard, designed by the fantastic @davidphilipbarr with some input from @pierrechevalier83 for the copper pad. All PCB files are available on the [project's github page](https://github.com/davidphilipbarr/Sweep)
 
 * Keyboard Maintainer: [Pierre Chevalier](https://github.com/pierrechevalier83)
 * Hardware Supported:
-	* Ferris sweep (With pro-micro. Comes in a couple of PCB edge cuts shapes, but with identical pinout)
+  * Ferris sweep (With pro-micro. Comes in a couple of PCB edge cuts shapes, but with identical pinout)
 * Hardware Availability: @iamnotyourbroom in the 40% discord chat server may have some spares for you.
 
 Make examples for this keyboard (after setting up your build environment):
