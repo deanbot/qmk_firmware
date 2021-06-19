@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 
+#include "capsword.c"
 #include "oneshot.h"
 #include "swapper.h"
 
@@ -28,12 +29,13 @@ enum custom_keycodes {
     OS_SHFT,
     OS_ALT,
     OS_GUI,
-    OS_CTRL
+    OS_CTRL,
+    OS_MEH,
+    REPEAT,
+    CAPSWORD
 };
 
 // define keycodes to make layers easier to read
-#define O_MEH OSM(MOD_MEH)
-#define O_SYM OSL(_SYM)
 #define M_NAV MO(_NAV)
 #define M_SYM MO(_SYM)
 #define SP_MK LT(_MOUSE, KC_SPACE)
@@ -126,16 +128,16 @@ enum custom_keycodes {
 
 #define _________________COLEMAK_R1_________________        KC_J,     KC_L,     KC_U,     KC_Y,     KC_QUOT
 #define _________________COLEMAK_R2_________________        KC_M,     KC_N,     KC_E,     KC_I,     KC_O
-#define _________________COLEMAK_R3_________________        KC_K,     KC_H,     KC_COMM,  KC_DOT,   KC_SCOLON
+#define _________________COLEMAK_R3_________________        KC_K,     KC_H,     KC_COMM,  KC_DOT,   KC_QUES
 
 // Nav layer
-#define __________________NAV_L1____________________        T_BASE,   O_MEH,    KC_NO,    APP,      SW_LANG
+#define __________________NAV_L1____________________        T_BASE,   OS_MEH,   REPEAT,   APP,      SW_LANG
 #define __________________NAV_L2____________________        ______________MODS_L______________,     SW_WIN
 #define __________________NAV_L3____________________        HUD,      ESC,      SCREEN_R, KC_TAB,   SW_PROF
 
 #define __________________NAV_R1____________________        KC_PGDOWN,KC_HOME,  KC_INS,   KC_END,   TERM
 #define __________________NAV_R2____________________        KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT
-#define __________________NAV_R3____________________        PS,       BS,       SEL_L,    DEL,      KC_CAPS
+#define __________________NAV_R3____________________        PS,       KC_ENTER, SEL_L,    DEL,      CAPSWORD
 
 // Sym layer
 #define __________________SYM_L1____________________        KC_TILD,  KC_LCBR,  LBRACK,  KC_LPRN,   KC_SCOLON
@@ -144,7 +146,7 @@ enum custom_keycodes {
 
 #define __________________SYM_R1____________________        KC_CIRC,  KC_RPRN,  RBRACK,  KC_RCBR,   KC_GRAVE
 #define __________________SYM_R2____________________        KC_DLR,   ______________MODS_R______________
-#define __________________SYM_R3____________________        TRANS,    KC_BSLASH,KC_AMPR, KC_EXLM,   KC_QUES
+#define __________________SYM_R3____________________        KC_COLON, KC_BSLASH,KC_AMPR, KC_EXLM,   TRANS
 
 // Num layer
 #define ___________________NUM_L1___________________        KC_7,     KC_5,     KC_3,     KC_1,     KC_9
@@ -197,7 +199,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     __________________NAV_L1____________________,       __________________NAV_R1____________________,
     __________________NAV_L2____________________,       __________________NAV_R2____________________,
     __________________NAV_L3____________________,       __________________NAV_R3____________________,
-                            TRANS,      TRANS,          KC_ENTER,   TRANS
+                            TRANS,      TRANS,          BS,         TRANS
   ),
 
   [_SYM] = LAYOUT_ferris(
@@ -236,7 +238,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-// via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
+// Callum OSM via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
     case M_SYM:
@@ -256,6 +258,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     case OS_CTRL:
     case OS_ALT:
     case OS_GUI:
+    case OS_MEH:
         return true;
     default:
         return false;
@@ -269,6 +272,47 @@ oneshot_state os_shft_state = os_up_unqueued;
 oneshot_state os_ctrl_state = os_up_unqueued;
 oneshot_state os_alt_state = os_up_unqueued;
 oneshot_state os_gui_state = os_up_unqueued;
+oneshot_state os_meh_state = os_up_unqueued;
+
+// Used to extract the basic tapping keycode from a dual-role key.
+// Example: GET_TAP_KC(MT(MOD_RSFT, KC_E)) == KC_E
+#define GET_TAP_KC(dual_role_key) dual_role_key & 0xFF
+uint16_t last_keycode = KC_NO;
+uint8_t last_modifier = 0;
+
+// Initialize variables holding the bitfield
+// representation of active modifiers.
+uint8_t mod_state;
+uint8_t oneshot_mod_state;
+
+void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
+    if (keycode != REPEAT) {
+        last_modifier = oneshot_mod_state > mod_state ? oneshot_mod_state : mod_state;
+        switch (keycode) {
+            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+                if (record->event.pressed) {
+                    last_keycode = GET_TAP_KC(keycode);
+                }
+                break;
+            case QK_MOMENTARY ... QK_MOMENTARY_MAX:
+                return; // to avoid modifier loss
+            default:
+                if (record->event.pressed) {
+                    last_keycode = keycode;
+                }
+                break;
+        }
+    } else { // keycode == REPEAT
+        if (record->event.pressed) {
+            register_mods(last_modifier);
+            register_code16(last_keycode);
+        } else {
+            unregister_code16(last_keycode);
+            unregister_mods(last_modifier);
+        }
+    }
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
@@ -300,6 +344,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         &os_gui_state, KC_LGUI, OS_GUI,
         keycode, record
     );
+    update_oneshot(
+        &os_meh_state, KC_MEH, OS_MEH,
+        keycode, record
+    );
 
   switch (keycode) {
     // select line
@@ -315,8 +363,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(SS_TAP(X_LALT) SS_DELAY(100) SS_LSFT(SS_TAP(X_TAB)) SS_DELAY(100) SS_TAP(X_SPACE) SS_DELAY(100) SS_TAP(X_TAB));
         }
         break;
-  }
-  return true;
+
+        case CAPSWORD:
+             if (record->event.pressed) {
+                return false;
+            } else {
+                caps_word_toggle();
+                return false;
+        }
+    }
+
+    process_caps_word(keycode, record);
+
+    process_repeat_key(keycode, record);
+    // It's important to update the mod variables *after* calling process_repeat_key, or else
+    // only a single modifier from the previous key is repeated (e.g. Ctrl+Shift+T then Repeat produces Shift+T)
+    mod_state = get_mods();
+    oneshot_mod_state = get_oneshot_mods();
+
+    return true;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
