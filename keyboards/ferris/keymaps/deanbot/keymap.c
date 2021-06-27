@@ -1,8 +1,11 @@
 #include QMK_KEYBOARD_H
 
-#include "capsword.c"
-#include "oneshot.h"
-#include "swapper.h"
+#include <stdint.h>
+#include <stdbool.h>
+// #include "print.h"
+#include "quantum.h"
+
+#include "deanbot.h"
 
 // utilities
 #define S_T(...)  LSFT_T(__VA_ARGS__)
@@ -128,7 +131,7 @@ enum custom_keycodes {
 
 #define _________________COLEMAK_R1_________________        KC_J,     KC_L,     KC_U,     KC_Y,     KC_QUOT
 #define _________________COLEMAK_R2_________________        KC_M,     KC_N,     KC_E,     KC_I,     KC_O
-#define _________________COLEMAK_R3_________________        KC_K,     KC_H,     KC_COMM,  KC_DOT,   KC_QUES
+#define _________________COLEMAK_R3_________________        KC_K,     KC_H,     KC_COMM,  KC_DOT,   KC_SCOLON
 
 // Nav layer
 #define __________________NAV_L1____________________        T_BASE,   OS_MEH,   REPEAT,   APP,      SW_LANG
@@ -140,13 +143,13 @@ enum custom_keycodes {
 #define __________________NAV_R3____________________        PS,       KC_ENTER, SEL_L,    DEL,      CAPSWORD
 
 // Sym layer
-#define __________________SYM_L1____________________        KC_TILD,  KC_LCBR,  LBRACK,  KC_LPRN,   KC_SCOLON
+#define __________________SYM_L1____________________        KC_TILD,  KC_LCBR,  LBRACK,  KC_LPRN,   KC_COLON
 #define __________________SYM_L2____________________        KC_MINUS, KC_PLUS,  KC_EQUAL,KC_UNDS,   KC_HASH
 #define __________________SYM_L3____________________        KC_ASTR,  KC_PIPE,  KC_AT,   KC_SLASH,  KC_PERC
 
 #define __________________SYM_R1____________________        KC_CIRC,  KC_RPRN,  RBRACK,  KC_RCBR,   KC_GRAVE
 #define __________________SYM_R2____________________        KC_DLR,   ______________MODS_R______________
-#define __________________SYM_R3____________________        KC_COLON, KC_BSLASH,KC_AMPR, KC_EXLM,   TRANS
+#define __________________SYM_R3____________________        KC_NO,    KC_BSLASH,KC_AMPR, KC_EXLM,   KC_QUES
 
 // Num layer
 #define ___________________NUM_L1___________________        KC_7,     KC_5,     KC_3,     KC_1,     KC_9
@@ -284,7 +287,7 @@ uint8_t last_modifier = 0;
 // representation of active modifiers.
 uint8_t mod_state;
 uint8_t oneshot_mod_state;
-
+/*
 void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
     if (keycode != REPEAT) {
         last_modifier = oneshot_mod_state > mod_state ? oneshot_mod_state : mod_state;
@@ -304,7 +307,7 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
                 break;
         }
     } else { // keycode == REPEAT
-        if (record->event.pressed) {
+    if (record->event.pressed) {
             register_mods(last_modifier);
             register_code16(last_keycode);
         } else {
@@ -312,9 +315,22 @@ void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
             unregister_mods(last_modifier);
         }
     }
-}
+}*/
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+#ifdef CONSOLE_ENABLE
+  if (record->event.pressed)
+  {
+    uprintf(
+        "0x%04X,%u,%u,%u\n",
+        keycode,
+        record->event.key.row,
+        record->event.key.col,
+        get_highest_layer(layer_state));
+  }
+#endif
+
     // via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
     // single key alt tab and shift alt for layers
     update_swapper(
@@ -375,11 +391,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     process_caps_word(keycode, record);
 
-    process_repeat_key(keycode, record);
     // It's important to update the mod variables *after* calling process_repeat_key, or else
     // only a single modifier from the previous key is repeated (e.g. Ctrl+Shift+T then Repeat produces Shift+T)
-    mod_state = get_mods();
-    oneshot_mod_state = get_oneshot_mods();
+    // mod_state = get_mods();
+    // oneshot_mod_state = get_oneshot_mods();
+
+        if (!process_repeat_last_key(keycode, record, REPEAT, M_NAV)) {
+        return false;
+    }
 
     return true;
 }

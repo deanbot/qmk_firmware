@@ -1,9 +1,4 @@
-// CAPS WORD by dnaq, iaap and others.
-// Borrowed from dxgmh, who borrowoed from @sevanteri.
-
-#pragma once
-
-#include <stdbool.h>
+#include "capsword.h"
 
 static bool caps_word_enabled = false;
 void caps_word_enable(void) {
@@ -28,7 +23,7 @@ void caps_word_toggle(void) {
     }
 }
 
-static void process_caps_word(uint16_t keycode, keyrecord_t *record) {
+void process_caps_word(uint16_t keycode, keyrecord_t *record) {
     if (caps_word_enabled) {
         // first strip of the mod taps and layer taps if needed
         switch (keycode) {
