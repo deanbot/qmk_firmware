@@ -2,9 +2,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-// #include "print.h"
 #include "quantum.h"
-
 #include "deanbot.h"
 
 // utilities
@@ -33,7 +31,6 @@ enum custom_keycodes {
     OS_ALT,
     OS_GUI,
     OS_CTRL,
-    OS_MEH,
     REPEAT,
     CAPSWORD
 };
@@ -49,7 +46,6 @@ enum custom_keycodes {
 #define T_MOUSE TO(_MOUSE)
 #define T_NAV TO(_NAV)
 #define M_META MO(_META)
-#define WAKE KC_SYSTEM_WAKE
 #define SLEEP KC_SYSTEM_SLEEP
 #define M_PREV KC_MEDIA_PREV_TRACK
 #define M_NEXT KC_MEDIA_NEXT_TRACK
@@ -60,30 +56,25 @@ enum custom_keycodes {
 #define M_PAUSE KC_MEDIA_PLAY_PAUSE
 #define BR_UP KC_BRIGHTNESS_UP
 #define BR_DOWN KC_BRIGHTNESS_DOWN
+#define EMPTY LGUI(KC_DELETE)
+#define MUTE_TMS LCTL(LSFT (KC_M))
+#define LOCK LGUI(KC_L)
 
 // Nav tokens
 #define HUD LGUI(KC_TAB)
-#define REDO LCTL(KC_Y)
-#define COPY LCTL(KC_C)
-#define CUT LCTL(KC_X)
-#define PASTE LCTL(KC_V)
-#define UNDO LCTL(KC_Z)
 #define ESC KC_ESCAPE
 #define BS KC_BSPACE
 #define DEL KC_DELETE
 #define APP KC_APPLICATION
 #define DEL_LINE LCTL(LSFT(KC_K))
-#define CKP_0 LCTL(KC_KP_0)
-#define CKP_MIN LCTL(KC_KP_MINUS)
-#define CKP_PLS LCTL(KC_KP_PLUS)
 #define PS KC_PSCREEN
 #define SEL_HOME LSFT(KC_HOME)
 #define SEL_END LSFT(KC_END)
-#define SEL_WORD LSFT(KC_D)
-#define TERM LCTL(KC_GRAVE)
+#define TERM LALT(KC_F12)
+#define PROJ LALT(KC_1)
+#define HINT LCTL(KC_SPACE)
 #define SCREEN_L G(S(KC_LEFT))
 #define SCREEN_R G(S(KC_RIGHT))
-#define HINT LCTL(KC_SPACE)
 
 // Mouse keycodes
 #define INCOG LCTL(LSFT(KC_N))
@@ -110,6 +101,9 @@ enum custom_keycodes {
 #define BACK LALT(KC_LEFT)
 #define FWD LALT(KC_RIGHT)
 #define DEVT LCTL(LSFT(KC_I))
+#define ZOOM_RST LCTL(KC_KP_0)
+#define ZOOM_OUT LCTL(KC_KP_MINUS)
+#define ZOOM_IN LCTL(KC_KP_PLUS)
 
 // sym tokens
 #define LBRACK KC_LBRACKET
@@ -119,6 +113,7 @@ enum custom_keycodes {
 #define TRANS KC_TRANSPARENT
 
 // Shared
+// clang-format off
 #define __________________BLANK_4___________________        TRANS,    TRANS,    TRANS,    TRANS
 #define ____________________NO_5____________________        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO
 #define ______________MODS_L______________                  OS_GUI,   OS_ALT,   OS_CTRL,  OS_SHFT
@@ -134,16 +129,16 @@ enum custom_keycodes {
 #define _________________COLEMAK_R3_________________        KC_K,     KC_H,     KC_COMM,  KC_DOT,   KC_SCOLON
 
 // Nav layer
-#define __________________NAV_L1____________________        T_BASE,   OS_MEH,   REPEAT,   APP,      SW_LANG
+#define __________________NAV_L1____________________        PROJ,     HINT,     REPEAT,   APP,      SW_LANG
 #define __________________NAV_L2____________________        ______________MODS_L______________,     SW_WIN
-#define __________________NAV_L3____________________        HUD,      ESC,      SCREEN_R, KC_TAB,   SW_PROF
+#define __________________NAV_L3____________________        HUD,      ESC,      SCREEN_R, KC_TAB,   PS
 
 #define __________________NAV_R1____________________        KC_PGDOWN,KC_HOME,  KC_INS,   KC_END,   TERM
 #define __________________NAV_R2____________________        KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT
-#define __________________NAV_R3____________________        PS,       KC_ENTER, SEL_L,    DEL,      CAPSWORD
+#define __________________NAV_R3____________________        DEL_LINE, KC_ENTER, SEL_L,    DEL,      CAPSWORD
 
 // Sym layer
-#define __________________SYM_L1____________________        KC_TILD,  KC_LCBR,  LBRACK,  KC_LPRN,   KC_COLON
+#define __________________SYM_L1____________________        KC_TILD,  KC_LCBR,  LBRACK,  KC_LPRN,   KC_SCOLON
 #define __________________SYM_L2____________________        KC_MINUS, KC_PLUS,  KC_EQUAL,KC_UNDS,   KC_HASH
 #define __________________SYM_L3____________________        KC_ASTR,  KC_PIPE,  KC_AT,   KC_SLASH,  KC_PERC
 
@@ -161,18 +156,18 @@ enum custom_keycodes {
 #define ___________________NUM_R3___________________        KC_F8,    KC_F10,   KC_F2,    KC_F4,    KC_F6
 
 // Mouse layer
-#define _________________MOUSE_L1___________________        CKP_PLS,  MBTN2,    MW_UP,    MBTN3,    CKP_MIN
-#define _________________MOUSE_L2___________________        MLEFT,    MUP,      MDOWN,    MRIGHT,   H_RFRSH
-#define _________________MOUSE_L3___________________        CKP_0,    MW_LEFT,  MW_DOWN,  MW_RIGHT, BACK
+#define _________________MOUSE_L1___________________        ZOOM_OUT, MBTN2,    MW_UP,    MBTN3,    ZOOM_IN
+#define _________________MOUSE_L2___________________        MLEFT,    MUP,      MDOWN,    MRIGHT,   DEVT
+#define _________________MOUSE_L3___________________        ZOOM_RST, MW_LEFT,  MW_DOWN,  MW_RIGHT, BACK
 
-#define _________________MOUSE_R1___________________        DEVT,     PREVT,    TOP,      NEXTT,    T_BASE
+#define _________________MOUSE_R1___________________        INCOG,    PREVT,    TOP,      NEXTT,    SW_PROF
 #define _________________MOUSE_R2___________________        CLOSET,   ______________MODS_R______________
 #define _________________MOUSE_R3___________________        FWD,      NEWTAB,   BOTTOM,   DUPT,     RETAB
 
 // Meta layer
-#define _________________META_L1____________________        SLEEP,    WAKE,     KC_NO,    T_BASE,   RESET
-#define _________________META_L2____________________        KC_NO,    BR_UP,    BR_DOWN,  T_MOUSE,  KC_NO
-#define _________________META_L3____________________        T_QWERTY, KC_NO,    KC_NO,    T_NAV,    EEP_RST
+#define _________________META_L1____________________        SLEEP,    LOCK,     T_NAV,    T_MOUSE,  RESET
+#define _________________META_L2____________________        KC_NO,    BR_UP,    BR_DOWN,  T_BASE,   KC_NO
+#define _________________META_L3____________________        T_QWERTY, EMPTY,    KC_NO,    MUTE_TMS, KC_NO
 
 #define _________________META_R1____________________        M_PAUSE,  RGB_SPD,  RGB_SPI,  RGB_MOD,  RGB_TOG
 #define _________________META_R2____________________        M_STOP,   RGB_VAD,  RGB_VAI,  RGB_HUD,  RGB_HUI
@@ -240,8 +235,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 __________________BLANK_4___________________
   )
 };
+// clang-format off
 
-// Callum OSM via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
     case M_SYM:
@@ -261,7 +256,6 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     case OS_CTRL:
     case OS_ALT:
     case OS_GUI:
-    case OS_MEH:
         return true;
     default:
         return false;
@@ -275,47 +269,6 @@ oneshot_state os_shft_state = os_up_unqueued;
 oneshot_state os_ctrl_state = os_up_unqueued;
 oneshot_state os_alt_state = os_up_unqueued;
 oneshot_state os_gui_state = os_up_unqueued;
-oneshot_state os_meh_state = os_up_unqueued;
-
-// Used to extract the basic tapping keycode from a dual-role key.
-// Example: GET_TAP_KC(MT(MOD_RSFT, KC_E)) == KC_E
-#define GET_TAP_KC(dual_role_key) dual_role_key & 0xFF
-uint16_t last_keycode = KC_NO;
-uint8_t last_modifier = 0;
-
-// Initialize variables holding the bitfield
-// representation of active modifiers.
-uint8_t mod_state;
-uint8_t oneshot_mod_state;
-/*
-void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
-    if (keycode != REPEAT) {
-        last_modifier = oneshot_mod_state > mod_state ? oneshot_mod_state : mod_state;
-        switch (keycode) {
-            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-                if (record->event.pressed) {
-                    last_keycode = GET_TAP_KC(keycode);
-                }
-                break;
-            case QK_MOMENTARY ... QK_MOMENTARY_MAX:
-                return; // to avoid modifier loss
-            default:
-                if (record->event.pressed) {
-                    last_keycode = keycode;
-                }
-                break;
-        }
-    } else { // keycode == REPEAT
-    if (record->event.pressed) {
-            register_mods(last_modifier);
-            register_code16(last_keycode);
-        } else {
-            unregister_code16(last_keycode);
-            unregister_mods(last_modifier);
-        }
-    }
-}*/
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
@@ -331,8 +284,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 #endif
 
-    // via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
-    // single key alt tab and shift alt for layers
     update_swapper(
         &sw_win_active, KC_LALT, KC_TAB, SW_WIN,
         keycode, record
@@ -342,8 +293,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         keycode, record
     );
 
-    // via https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum
-    // one shot implementation w/o timers
     update_oneshot(
         &os_shft_state, KC_LSHIFT, OS_SHFT,
         keycode, record
@@ -358,10 +307,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     );
     update_oneshot(
         &os_gui_state, KC_LGUI, OS_GUI,
-        keycode, record
-    );
-    update_oneshot(
-        &os_meh_state, KC_MEH, OS_MEH,
         keycode, record
     );
 
@@ -380,23 +325,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 
-        case CAPSWORD:
-             if (record->event.pressed) {
-                return false;
-            } else {
-                caps_word_toggle();
-                return false;
-        }
+    case CAPSWORD:
+            if (record->event.pressed) {
+            return false;
+        } else {
+            caps_word_toggle();
+            return false;
+    }
     }
 
     process_caps_word(keycode, record);
 
-    // It's important to update the mod variables *after* calling process_repeat_key, or else
-    // only a single modifier from the previous key is repeated (e.g. Ctrl+Shift+T then Repeat produces Shift+T)
-    // mod_state = get_mods();
-    // oneshot_mod_state = get_oneshot_mods();
-
-        if (!process_repeat_last_key(keycode, record, REPEAT, M_NAV)) {
+    if (!process_repeat_last_key(keycode, record, REPEAT, M_NAV)) {
         return false;
     }
 
